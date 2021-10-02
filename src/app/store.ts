@@ -1,8 +1,12 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { configureStore } from '@reduxjs/toolkit';
+import AuthReducer from '../utils/authentication/authSlice';
 
 
 export const store = configureStore({
-    reducer: {}
+    reducer: {
+        auth: AuthReducer
+    }
 })
 
 export type RootState = ReturnType<typeof store.getState>
