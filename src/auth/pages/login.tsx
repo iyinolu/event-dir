@@ -2,7 +2,7 @@
 import React from 'react';
 import { LockClosedIcon } from '@heroicons/react/solid'
 import { useSelector, useDispatch } from 'react-redux'
-import { SignOutAction, LoginAction } from '../../utils/authentication/authSlice';
+import { SignOutAction, LoginAction } from '../../redux/reducer/authentication';
 
 export default function Login() {
   const dispatch = useDispatch()
