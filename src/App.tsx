@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { AuthBasePage } from "./auth/authPage";
 
 function App() {
-  const isAuth = useSelector((state: RootState) => state.auth.isLogin)
+  const isAuth = useSelector((state: RootState) => state.AuthReducer.isLogin)
 
   const currentPage = () => {
     switch (isAuth) {
