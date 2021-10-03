@@ -1,26 +1,26 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { RootState } from './app/store';
+import { LockClosedIcon } from '@heroicons/react/solid'
+import { useSelector, useDispatch } from 'react-redux'
+import { AuthBasePage } from "./auth/authPage";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const isAuth = useSelector((state: RootState) => state.AuthReducer.isLogin)
+
+  const currentPage = () => {
+    switch (isAuth) {
+      case false: 
+        return <AuthBasePage />
+      case true: 
+        return <h1> Welcome to a place you really want to be</h1>
+      default:
+        return <AuthBasePage />
+    }
+  }
+
+  return (currentPage())
 }
 
 export default App;
