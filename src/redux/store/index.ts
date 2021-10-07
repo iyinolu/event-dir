@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { configureStore } from '@reduxjs/toolkit';
-import AuthReducer from '../utils/authentication/authSlice';
+import AuthReducer from '../reducer/authentication';
 import { combineReducers } from 'redux';
 import storage from 'redux-persist/lib/storage'
 import {
