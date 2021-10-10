@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        customRegular: ['sans-serif'],
+        sans: ['sans-serif'],
       },
     },
   },
