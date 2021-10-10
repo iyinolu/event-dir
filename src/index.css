@@ -2,3 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* @font-face {
+    font-family: 'PlusJakartaDisplay-Bold';
+    src: local('PlusJakartaDisplay'), url(./utils/fonts/PlusJakartaText-Bold.otf) format('truetype');
+}
+
+@font-face {
+    font-family: 'PlusJakartaDisplay-Regular';
+    src: local('PlusJakartaDisplay'), url(./utils/fonts/PlusJakartaDisplay-Regular.otf) format('truetype');
+} */
+  
