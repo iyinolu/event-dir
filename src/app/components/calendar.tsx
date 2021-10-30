@@ -1,35 +1,36 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { useDispatch } from 'react-redux'
-import { Grid, Button, TextField} from '@material-ui/core';
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import StaticDatePicker from '@material-ui/lab/StaticDatePicker';
-import { withStyles, makeStyles } from '@material-ui/core';
+import {DatePicker} from "@material-ui/pickers";
+import { makeStyles } from "@material-ui/styles"
 
-// const useStyles = makeStyles(theme => ({
-//     root: {
-//         border: "2px"
-//     }
-// }))
+const useStyles = makeStyles(({
+    root: {
+        "& .MuiToolbar-root": {
+            backgroundColor: "red"
+        }
+    }
+}))
 
 
 export default function Calendar() {
+    const classes = useStyles()
     const dispatch = useDispatch()
     const [value, setValue] = React.useState<Date | null>( new Date())
 
     return (
         <>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <StaticDatePicker
-                    displayStaticWrapperAs="desktop"                        
-                    value={value}
-                    onChange={(newValue) => {
-                        setValue(newValue);
-                    }}
-                    renderInput={(params) => <TextField {...params} />}
-                />
-            </LocalizationProvider> 
+            <DatePicker
+                className={classes.root}
+                autoOk
+                variant="static"
+                openTo="date"
+                label="Date desktop"
+                value={value}
+                onChange={e => setValue(e)}
+                open={true}
+                
+            />    
         </> 
     )
 }

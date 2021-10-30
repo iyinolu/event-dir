@@ -11,7 +11,7 @@ import { toAbsoluteUrl } from '../../utils/helpers';
 
 export default function EventList() {
 
-
+    
 
     return (
         <div className="flex flex-col rounded-xl bg-gray-100 h-3/4 w-9/12 px-8 pt-8 pb-7">

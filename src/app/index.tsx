@@ -4,13 +4,9 @@ import Calendar from "./components/calendar";
 import { useDispatch } from 'react-redux'
 import { SunIcon } from '@heroicons/react/solid';
 import { PlusCircleIcon } from '@heroicons/react/solid';
-import Divider from '@mui/material/Divider';
+import { Divider } from "@material-ui/core";
 import { SignOutAction } from '../redux/reducer/authentication';
 import EventList from './components/display'
-import { Grid, Button, TextField} from '@material-ui/core';
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import StaticDatePicker from '@material-ui/lab/StaticDatePicker';
 import { toAbsoluteUrl } from '../utils/helpers';
 
 
