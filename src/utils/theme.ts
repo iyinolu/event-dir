@@ -43,12 +43,38 @@ const theme = createTheme({
     MuiPickersBasePicker: {
       pickerView: {
         maxWidth: "500px",
-        backgroundColor: "grey"
+        backgroundColor: "#272d37",
+        color: "#5f9ea0",
+        borderRadius: "13px"
       },
       container: {
-        width: "400px"
+        width: "400px",
+        background: "#0d1117",
+      }
+    },
+    MuiToolbar: {
+      root: {
+        backgroundColor: "#5f9ea0 !important",
+        marginBottom: "17px",
+        borderRadius: "13px",
+        color: "white"
+      }
+    },
+    MuiPickersCalendarHeader: {
+      dayLabel: {
+        color: "rgb(95 158 160 / 60%)"
+      },
+      iconButton: {
+        backgroundColor: "#272d37",
+        color: "rgba(0, 0, 0, 0.54)"
+      }
+    },
+    MuiTypography: {
+      colorInherit: {
+        color: "white"
       }
     }
+
   }
 });
 

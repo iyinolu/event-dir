@@ -6,6 +6,7 @@ import { LockClosedIcon } from '@heroicons/react/solid'
 import { useSelector, useDispatch } from 'react-redux'
 import { AuthBasePage } from "./auth/authPage";
 import BasePage from "./app/index"
+import "tailwindcss/tailwind.css"
 
 function App() {
   const isAuth = useSelector((state: RootState) => state.AuthReducer.isLogin)
