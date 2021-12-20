@@ -1,10 +1,9 @@
 export interface AuthState {
     isLogin: boolean,
-    email: string,
-    username: string,
+    email: string,    
 }
 
 export interface LoginPayLoad {
-    username: string,
     email: string,
+    password: string,
 }

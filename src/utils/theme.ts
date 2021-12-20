@@ -45,7 +45,9 @@ const theme = createTheme({
         maxWidth: "500px",
         backgroundColor: "#272d37",
         color: "#5f9ea0",
-        borderRadius: "13px"
+        borderRadius: "13px",
+        paddingBottom: "21px",
+        paddingTop: "12px",
       },
       container: {
         width: "400px",

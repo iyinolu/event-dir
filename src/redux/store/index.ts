@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { configureStore } from '@reduxjs/toolkit';
-import AuthReducer from '../reducer/authentication';
+import AuthReducer from '../reducer/authentication/authSlice';
+import AppReducer from '../reducer/app/appSlice';
 import { combineReducers } from 'redux';
 import storage from 'redux-persist/lib/storage'
 import {
@@ -14,7 +15,7 @@ import {
     REGISTER
 } from 'redux-persist'
 
-const rootReducer = combineReducers({AuthReducer})
+const rootReducer = combineReducers({AuthReducer, AppReducer})
 
 const persistConfig = {
     key: "root",

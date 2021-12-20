@@ -1,0 +1,29 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+type Storage = {
+    access: string,
+    refresh: string
+}
+
+export const toAbsoluteUrl = (pathname:string) => process.env.PUBLIC_URL + pathname;
+
+export const storageService = {
+    getFromStorage: (key: string) => {
+        var value = localStorage.getItem(key)
+        try {
+            var result: object|null = JSON.parse(value || "") 
+            return result
+        } catch {
+            return value
+        }
+    },
+    addToStorage: (key: string, value: any) => {
+        if (typeof value === "object") {
+            localStorage.setItem(key, JSON.stringify(value))
+        } else {
+            localStorage.setItem(key, value)
+        }        
+    },
+    removeFromStorage: (key:string) => {
+        localStorage.removeItem(key)
+    }
+}
