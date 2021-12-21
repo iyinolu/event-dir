@@ -8,11 +8,11 @@ import './index.css';
 import { Provider } from 'react-redux'
 import { store, persistor } from './redux/store';
 import { PersistGate } from 'redux-persist/integration/react'
-
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import  axios from 'axios';
 import { storageService } from './utils/helpers';
+import jwt_decode from 'jwt-decode';
 
 axios.interceptors.request.use(
   (config) => {
@@ -35,8 +35,18 @@ axios.interceptors.response.use(
     const originalRequest = error.config
     var token = storageService.getFromStorage("_eventRefreshtoken")
 
+    var dect  = jwt_decode<any>(typeof token === "string" ? token : "")
+    const now = new Date()
+    const expired = now > dect.exp;
+
+    if (expired) {
+      //TODO: add redirect to login logic
+      return
+    }
+
     if (error.response.status === 401 && token) {
       originalRequest._retry = true;
+
       const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
