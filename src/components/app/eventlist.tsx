@@ -11,8 +11,6 @@ import { toAbsoluteUrl } from '../../utils/helpers';
 
 export default function EventList() {
 
-    
-
     return (
         <div className="flex flex-col rounded-xl bg-gray-100 h-full w-9/12 px-8 pt-8 pb-7 overflow-auto min-h-full" style={{ background: "#272d37"}}>
             <div className="flex rounded-2xl h-40 w-full bg-white mb-6 px-5 py-4 border-2 border-gray-200" style={{ background: "#0d1117", borderColor: "#30363d"}}>

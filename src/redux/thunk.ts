@@ -36,18 +36,3 @@ export const fetchEvents = createAsyncThunk<Event[]>(
         return data
     }
 )
-
-
-// const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
-//     e.preventDefault()
-//     const body = loginInfo
-//     console.log(body)
-//     axios.post("http://127.0.0.1:8000/api/token/", body)
-//     .then(res => {
-//       if (res.status === 200) {
-//         storageService.addToStorage("_eventAccesstoken", res.data.access)
-//         storageService.addToStorage("_eventRefreshtoken", res.data.refresh)
-//         dispatch(LoginAction({username: loginInfo.email, email: loginInfo.email}))
-//       }
-//     }).catch(err => console.log(err.response))
-//   }

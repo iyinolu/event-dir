@@ -4,9 +4,9 @@ import './App.css';
 import { RootState } from './redux/store';
 import { LockClosedIcon } from '@heroicons/react/solid'
 import { useSelector, useDispatch } from 'react-redux'
-import { AuthBasePage } from "./auth/authPage";
+import { AuthBasePage } from "./containers/auth/AuthContainer";
 import { useAppSelector } from './utils/hooks';
-import BasePage from "./app/index"
+import BasePage from "./containers/app/BaseContainer";
 import "tailwindcss/tailwind.css"
 
 function App() {
