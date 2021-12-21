@@ -5,12 +5,12 @@ import { RootState } from './redux/store';
 import { LockClosedIcon } from '@heroicons/react/solid'
 import { useSelector, useDispatch } from 'react-redux'
 import { AuthBasePage } from "./auth/authPage";
+import { useAppSelector } from './utils/hooks';
 import BasePage from "./app/index"
 import "tailwindcss/tailwind.css"
 
 function App() {
-  const isAuth = useSelector((state: RootState) => state.AuthReducer.isLogin)
-
+  const isAuth = useAppSelector((state) => state.AuthReducer.isLogin)
   const currentPage = () => {
     switch (isAuth) {
       case false: 
