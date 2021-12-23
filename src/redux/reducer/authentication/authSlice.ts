@@ -7,7 +7,9 @@ import { storageService } from '../../../utils/helpers';
 
 const initialState: AuthState = {
     isLogin: false,
-    email: ""
+    email: "",
+    access: "",
+    refresh: ""
 }
 
 export const AuthSlice = createSlice({
@@ -17,6 +19,9 @@ export const AuthSlice = createSlice({
         SignOutAction: (state) => {
             state.email = ""
             state.isLogin = false
+        },
+        RefreshAccessToken: (state) => {
+            state.refresh = ""
         }
     },
     extraReducers: (builder) => {
@@ -25,7 +30,10 @@ export const AuthSlice = createSlice({
         });
         builder.addCase(login.fulfilled, (state, { payload }) => {
             state.isLogin = true
-            state.email = payload.email            
+            state.email = payload.email      
+            state.access = payload.access
+            state.refresh = payload.refresh      
+
             storageService.addToStorage("_eventAccesstoken", payload.access)
             storageService.addToStorage("_eventRefreshtoken", payload.refresh)
         })

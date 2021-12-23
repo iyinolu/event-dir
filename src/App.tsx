@@ -7,12 +7,17 @@ import { useSelector, useDispatch } from 'react-redux'
 import { AuthBasePage } from "./containers/auth/AuthContainer";
 import { useAppSelector } from './utils/hooks';
 import BasePage from "./containers/app/BaseContainer";
+import { verifyLoggedInStatus } from './utils/helpers';
 import "tailwindcss/tailwind.css"
+
 
 function App() {
   const isAuth = useAppSelector((state) => state.AuthReducer.isLogin)
+  const refreshToken = useAppSelector((state) => state.AuthReducer.refresh)
+  const isLoggedIn = verifyLoggedInStatus(refreshToken, isAuth)
+
   const currentPage = () => {
-    switch (isAuth) {
+    switch (isLoggedIn) {
       case false: 
         return <AuthBasePage />
       case true: 

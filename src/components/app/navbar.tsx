@@ -9,8 +9,11 @@ export default function NavigationBar() {
                 <span className="font-sans ml-5" style={{ color: "#cccccc"}}> Friday 7th October </span>
             </div>
             <div className="flex flex-row">
-                <div className="flex flex-row justify-center py-1 px-4 rounded-md hover:bg-gray-100 hover:border-2">
+                {/* <div className="flex flex-row justify-center py-1 px-4 rounded-md hover:bg-gray-100 hover:border-2">
                     <button className="font-sans" style={{ color: "#cccccc"}}>My Account</button>
+                </div> */}
+                <div className="flex flex-row justify-center ml-9 py-1 px-4 rounded-md hover:bg-gray-100 hover:border-2">
+                    <button className="font-sans">My Account</button>
                 </div>
                 <div className="flex flex-row justify-center ml-9 py-1 px-4 rounded-md hover:bg-gray-100 hover:border-2">
                     <button className="font-sans">All Events</button>

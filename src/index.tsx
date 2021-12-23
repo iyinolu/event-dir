@@ -13,6 +13,8 @@ import DateFnsUtils from '@date-io/date-fns';
 import  axios from 'axios';
 import { storageService } from './utils/helpers';
 import jwt_decode from 'jwt-decode';
+import { useAppSelector } from "./utils/hooks";
+import { refreshTokValid } from "./utils/helpers";
 
 axios.interceptors.request.use(
   (config) => {
@@ -33,13 +35,11 @@ axios.interceptors.response.use(
   },
   (error) => {
     const originalRequest = error.config
-    var token = storageService.getFromStorage("_eventRefreshtoken")
+    // var token = storageService.getFromStorage("_eventRefreshtoken")
+    var token = useAppSelector((state) => state.AuthReducer.refresh)
+    const isValid = refreshTokValid(token)
 
-    var dect  = jwt_decode<any>(typeof token === "string" ? token : "")
-    const now = new Date()
-    const expired = now > dect.exp;
-
-    if (expired) {
+    if (isValid) {
       //TODO: add redirect to login logic
       return
     }

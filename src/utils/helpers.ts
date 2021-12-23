@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import jwt_decode from 'jwt-decode';
+
 type Storage = {
     access: string,
     refresh: string
@@ -26,4 +28,16 @@ export const storageService = {
     removeFromStorage: (key:string) => {
         localStorage.removeItem(key)
     }
+}
+
+export const refreshTokValid = (token: string) => {
+    var decoded  = jwt_decode<any>(token);
+    var now = new Date();
+    var isValid = now > decoded.exp;
+    return isValid;
+}
+
+export const verifyLoggedInStatus = (refresh:string, isLogin:boolean):boolean => {
+    var validToken = refreshTokValid(refresh)
+    return validToken && isLogin
 }

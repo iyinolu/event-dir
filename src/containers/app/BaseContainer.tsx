@@ -29,7 +29,7 @@ type SideBarContextValue = {
  
 const sideBarCtxDefaultValue: SideBarContextValue = {
     sideBarState: {open: false, data: ""},
-    setSideBarState: (prevState: SetStateAction<sidebarContextState>) => {}
+    setSideBarState: () => {}
 }
 
 export const navBarContext = React.createContext<NavContextInterface<any> | null>(null)
@@ -54,7 +54,7 @@ export default function BasePage() {
                 </sideBarContext.Provider>
 
                 <div className="px-20 mt-3 flex flex-row justify-between items-center" >
-                    <h1 className="font-sans">Events</h1>
+                    <span/>
                     <button style={{ fontSize:"11px", fontWeight:"bold", padding: "2px 9px"}} onClick={() => { dispatch(fetchEvents()); setSideBarState({open: true, data: ""})} } className="font-sans flex items-center py-1 px-4 rounded-md bg-gray-100 hover:bg-gray-300 border-2 border-grey-500">
                         Add New Event
                         <PlusCircleIcon className="ml-4 h-5 w-5"/>
