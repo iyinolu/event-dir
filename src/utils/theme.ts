@@ -43,7 +43,7 @@ const theme = createTheme({
     MuiPickersBasePicker: {
       pickerView: {
         maxWidth: "500px",
-        backgroundColor: "#272d37",
+        backgroundColor: "#0f0f0f",
         color: "#5f9ea0",
         borderRadius: "13px",
         paddingBottom: "21px",
@@ -51,12 +51,12 @@ const theme = createTheme({
       },
       container: {
         width: "400px",
-        background: "#0d1117",
+        background: "black",
       }
     },
     MuiToolbar: {
       root: {
-        backgroundColor: "#5f9ea0 !important",
+        backgroundColor: "#0f0f0f !important",
         marginBottom: "17px",
         borderRadius: "13px",
         color: "white"
@@ -67,13 +67,20 @@ const theme = createTheme({
         color: "rgb(95 158 160 / 60%)"
       },
       iconButton: {
-        backgroundColor: "#272d37",
-        color: "rgba(0, 0, 0, 0.54)"
+        backgroundColor: "#0f0f0f",
+        color: "white"
       }
     },
     MuiTypography: {
       colorInherit: {
         color: "white"
+      }
+    },
+    MuiPickersDay: {
+      daySelected: {
+        backgroundColor: "#9acd32",
+        color: 'black',
+        fontWeight: "500",
       }
     }
 

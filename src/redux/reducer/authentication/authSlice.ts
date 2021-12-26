@@ -20,8 +20,8 @@ export const AuthSlice = createSlice({
             state.email = ""
             state.isLogin = false
         },
-        RefreshAccessToken: (state) => {
-            state.refresh = ""
+        ReloadAccessToken: (state, action: PayloadAction<string> ) => {
+            state.access = action.payload
         }
     },
     extraReducers: (builder) => {
@@ -33,13 +33,10 @@ export const AuthSlice = createSlice({
             state.email = payload.email      
             state.access = payload.access
             state.refresh = payload.refresh      
-
-            storageService.addToStorage("_eventAccesstoken", payload.access)
-            storageService.addToStorage("_eventRefreshtoken", payload.refresh)
         })
 
     }
 })
 
-export const { SignOutAction } = AuthSlice.actions
+export const { SignOutAction, ReloadAccessToken } = AuthSlice.actions
 export default AuthSlice.reducer

@@ -11,14 +11,12 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import  axios from 'axios';
-import { storageService } from './utils/helpers';
-import jwt_decode from 'jwt-decode';
-import { useAppSelector } from "./utils/hooks";
 import { refreshTokValid } from "./utils/helpers";
+import { ReloadAccessToken } from "./redux/reducer/authentication/authSlice";
 
 axios.interceptors.request.use(
   (config) => {
-    var token = storageService.getFromStorage('_eventAccesstoken')
+    var token = store.getState().AuthReducer.access
     if (token && !config.url!.includes("/api/token/")) {
       config.headers!.Authorization = `Bearer ${token}`
     }    
@@ -35,11 +33,10 @@ axios.interceptors.response.use(
   },
   (error) => {
     const originalRequest = error.config
-    // var token = storageService.getFromStorage("_eventRefreshtoken")
-    var token = useAppSelector((state) => state.AuthReducer.refresh)
+    var token = store.getState().AuthReducer.refresh
     const isValid = refreshTokValid(token)
 
-    if (isValid) {
+    if (!isValid) {
       //TODO: add redirect to login logic
       return
     }
@@ -57,7 +54,7 @@ axios.interceptors.response.use(
       .then(res => {
         axios.defaults.headers.common["Authorization"] =
                 "Bearer " + res.access
-        storageService.addToStorage("_eventAccesstoken", res.access) 
+        store.dispatch(ReloadAccessToken(res.access))
         return axios(originalRequest);
       }).catch(err => {
         console.log(err)

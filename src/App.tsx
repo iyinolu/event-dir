@@ -14,7 +14,13 @@ import "tailwindcss/tailwind.css"
 function App() {
   const isAuth = useAppSelector((state) => state.AuthReducer.isLogin)
   const refreshToken = useAppSelector((state) => state.AuthReducer.refresh)
-  const isLoggedIn = verifyLoggedInStatus(refreshToken, isAuth)
+  const [isLoggedIn, setLogin] = React.useState(false)
+
+  React.useLayoutEffect(() => {
+    if (refreshToken) {
+      setLogin(verifyLoggedInStatus(refreshToken, isAuth))
+    } 
+  }, [isAuth, refreshToken])
 
   const currentPage = () => {
     switch (isLoggedIn) {

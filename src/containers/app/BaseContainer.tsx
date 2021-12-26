@@ -12,6 +12,7 @@ import ProfileSideBar from '../../components/app/profilesidebar';
 import { ThemeProvider } from '@material-ui/core';
 import theme from '../../utils/theme'
 import { fetchEvents } from '../../redux/thunk';
+import { withStyles, makeStyles } from '@material-ui/styles';
 
 
 interface NavContextInterface<T> {
@@ -43,7 +44,7 @@ export default function BasePage() {
     const data = React.useRef()
 
     return (
-        <div className="max-h-screen min-h-screen h-screen" style={{ background: "#0d1117"}}>
+        <div className="max-h-screen min-h-screen h-screen" style={{ background: "black"}}>
             <div className="h-1/5">
 
                 <navBarContext.Provider value={{ data }}>
@@ -55,9 +56,13 @@ export default function BasePage() {
 
                 <div className="px-20 mt-3 flex flex-row justify-between items-center" >
                     <span/>
-                    <button style={{ fontSize:"11px", fontWeight:"bold", padding: "2px 9px"}} onClick={() => { dispatch(fetchEvents()); setSideBarState({open: true, data: ""})} } className="font-sans flex items-center py-1 px-4 rounded-md bg-gray-100 hover:bg-gray-300 border-2 border-grey-500">
+                    <button 
+                        style={{ fontSize:"11px", fontWeight:"bold", padding: "2px 9px", background: "#9acd32"}} 
+                        onClick={() => { dispatch(fetchEvents()); setSideBarState({open: true, data: ""})} } 
+                        className="font-sans flex items-center py-1 px-4 rounded-md hover:bg-gray-300 border-2 border-grey-500"
+                    >
                         Add New Event
-                        <PlusCircleIcon className="ml-4 h-5 w-5"/>
+                    <PlusCircleIcon className="ml-4 h-5 w-5"/>
                     </button>
                 </div>
             </div>
