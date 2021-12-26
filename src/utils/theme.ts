@@ -64,11 +64,17 @@ const theme = createTheme({
     },
     MuiPickersCalendarHeader: {
       dayLabel: {
-        color: "rgb(95 158 160 / 60%)"
+        color: "rgb(164 164 164 / 60%)"
       },
       iconButton: {
         backgroundColor: "#0f0f0f",
         color: "white"
+      },
+      transitionContainer: {
+        "& .MuiTypography-root": {
+          fontWeight: "700",
+          color: "#8a8a8a"
+        }
       }
     },
     MuiTypography: {
@@ -80,10 +86,23 @@ const theme = createTheme({
       daySelected: {
         backgroundColor: "#9acd32",
         color: 'black',
-        fontWeight: "500",
+        "& .MuiTypography-root": {
+          color: "black",
+          fontWeight: "700"
+        },
+        "&:hover": {
+          backgroundColor: "#9acd32",
+          color: 'black',
+        }
       }
-    }
-
+    },
+    MuiPickersToolbarButton: {
+      toolbarBtn: {
+        "& h6": {
+          color: "#9acd32 !important"
+        }
+      }
+    },
   }
 });
 

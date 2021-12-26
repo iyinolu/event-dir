@@ -13,6 +13,7 @@ import { ThemeProvider } from '@material-ui/core';
 import theme from '../../utils/theme'
 import { fetchEvents } from '../../redux/thunk';
 import { withStyles, makeStyles } from '@material-ui/styles';
+import { useAppSelector } from '../../utils/hooks';
 
 
 interface NavContextInterface<T> {
@@ -41,25 +42,31 @@ export default function BasePage() {
     const dispatch = useDispatch()
     const [value, setValue] = React.useState<Date | null>( new Date())
     const [sideBarState, setSideBarState] = React.useState<sidebarContextState>({open: false, data: ""})
+    const userState = useAppSelector((state) => state.AuthReducer)
     const data = React.useRef()
+
 
     return (
         <div className="max-h-screen min-h-screen h-screen" style={{ background: "black"}}>
             <div className="h-1/5">
-
                 <navBarContext.Provider value={{ data }}>
-                    <NavigationBar />
+                    <NavigationBar userState={userState}  />
                 </navBarContext.Provider>
                 <sideBarContext.Provider value={{ sideBarState, setSideBarState }}>
                     <ProfileSideBar />
                 </sideBarContext.Provider>
-
                 <div className="px-20 mt-3 flex flex-row justify-between items-center" >
                     <span/>
                     <button 
-                        style={{ fontSize:"11px", fontWeight:"bold", padding: "2px 9px", background: "#9acd32"}} 
+                        style={{ 
+                            fontSize:"11px", 
+                            fontWeight:"bold", 
+                            padding: "2px 9px", 
+                            background: "#9acd32", 
+                            borderColor: "yellowgreen"
+                        }} 
                         onClick={() => { dispatch(fetchEvents()); setSideBarState({open: true, data: ""})} } 
-                        className="font-sans flex items-center py-1 px-4 rounded-md hover:bg-gray-300 border-2 border-grey-500"
+                        className="font-sans flex items-center py-1 px-4 rounded-md border-2 border-grey-500"
                     >
                         Add New Event
                     <PlusCircleIcon className="ml-4 h-5 w-5"/>

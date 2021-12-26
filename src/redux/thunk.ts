@@ -2,6 +2,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { LoginPayLoad } from './reducer/authentication/types';
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 
 
 type Event = {
@@ -10,19 +11,35 @@ type Event = {
     content: string;
     tag: string;
 }
-
 type UserInfo = {
     email: string;
     access: string;
     refresh: string;
+    id:number;
+    is_active: boolean;
+    username: string;
 }
+type UserTokenData = {
+    id:number;
+    email: string;
+    is_active: boolean;
+    username: string;
+}
+type TokenClaim = {
+    exp: number;
+    jti: string;
+    token_type: string;
+    user: UserTokenData;
+}
+
 
 export const login = createAsyncThunk<UserInfo, LoginPayLoad>(
     'user/login',
     async (loginBody: LoginPayLoad) => {
         const response = await axios.post("http://127.0.0.1:8000/api/token/", loginBody)
-        const data:UserInfo = {...response.data }
-        data.email = loginBody.email
+        const tokenClaim:TokenClaim = jwt_decode(response.data.access)
+        const userInfo:UserTokenData = tokenClaim.user
+        const data:UserInfo = {...response.data, ...userInfo }
 
         return data
     }

@@ -9,7 +9,10 @@ const initialState: AuthState = {
     isLogin: false,
     email: "",
     access: "",
-    refresh: ""
+    refresh: "",
+    id: -1,
+    is_active: false ,
+    username: "",   
 }
 
 export const AuthSlice = createSlice({
@@ -32,7 +35,10 @@ export const AuthSlice = createSlice({
             state.isLogin = true
             state.email = payload.email      
             state.access = payload.access
-            state.refresh = payload.refresh      
+            state.refresh = payload.refresh 
+            state.id = payload.id
+            state.is_active = payload.is_active
+            state.username = payload.username     
         })
 
     }

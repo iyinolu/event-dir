@@ -7,9 +7,6 @@ module.exports = {
         sans: ['sans-serif'],
       },
     },
-    colors: {
-      green: 'rgb(35, 134, 54)'
-    }
   },
   variants: {
     extend: {

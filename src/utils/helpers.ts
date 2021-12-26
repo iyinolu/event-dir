@@ -41,3 +41,8 @@ export const verifyLoggedInStatus = (refresh:string, isLogin:boolean):boolean =>
     var validToken = refreshTokValid(refresh)
     return validToken && isLogin
 }
+
+export const capitalize = (input:string) => {
+    var format = `${input[0].toUpperCase()}${input.slice(1)}`
+    return format
+}
