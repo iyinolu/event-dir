@@ -23,18 +23,23 @@ export default function ProfileSideBar() {
     const context = React.useContext(sideBarContext)
     const { sideBarState, setSideBarState } = context
 
+    React.useEffect(() => {
+        let hello;
+        console.log(sideBarState)
+    })
+
     return (
         <Drawer anchor="right" open={sideBarState.open} PaperProps={{classes:{root: classes.root}}}>
             <div className="px-5 py-9 h-screen" style={{ paddingTop: "21px"}}>
                 <div className="flex justify-end">
                     <CloseButton 
-                        onClick={() => setSideBarState({open: false, data: ""})}
+                        onClick={() => setSideBarState({open: false, data: null})}
                     >   
                         <XIcon className="h-5 w-5"/>
                     </CloseButton>
                 </div>
                 <div className={classes.frame}>
-                    <ProfileInfoBlock />
+                    <ProfileInfoBlock data={sideBarState.data ? sideBarState.data : null}/>
                 </div>
             </div>
         </Drawer>

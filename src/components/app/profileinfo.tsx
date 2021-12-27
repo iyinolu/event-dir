@@ -2,6 +2,7 @@
 import React from 'react';
 import { withStyles, makeStyles } from '@material-ui/styles';
 import { DefaultProfilePlaceholder } from './styled';
+import { AuthState } from '../../redux/reducer/authentication/types';
 
 const useStyles = makeStyles({
     root: {
@@ -12,14 +13,17 @@ const useStyles = makeStyles({
     }
 })
 
-export default function ProfileInfoBlock() {
+type PropType = {
+    data: AuthState | null
+}
+export default function ProfileInfoBlock({data}:PropType) {
     const classes = useStyles()
     return (
         <div className={classes.root}>
             <DefaultProfilePlaceholder>P</DefaultProfilePlaceholder>
             <div className="flex flex-col mt-4">
-                <span className="font-semibold text-lg">Paul Iyinolu</span>
-                <span className="font-extralight text-sm">pauliyinolu@gmail.com</span>
+                <span className="font-semibold text-lg">{`${data?.firstname} ${data?.lastname}`}</span>
+                <span className="font-extralight text-sm">{data?.email}</span>
             </div>
         </div>
     )

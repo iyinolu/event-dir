@@ -18,6 +18,8 @@ type UserInfo = {
     id:number;
     is_active: boolean;
     username: string;
+    firstname: string;
+    lastname: string;
 }
 type UserTokenData = {
     id:number;

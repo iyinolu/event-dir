@@ -14,23 +14,24 @@ import theme from '../../utils/theme'
 import { fetchEvents } from '../../redux/thunk';
 import { withStyles, makeStyles } from '@material-ui/styles';
 import { useAppSelector } from '../../utils/hooks';
+import { AuthState } from '../../redux/reducer/authentication/types';
 
 
 interface NavContextInterface<T> {
     data: T
 }
 
-type sidebarContextState = {
+type sidebarContextType = {
     open: boolean;
-    data: any;
+    data: AuthState|null;
 }
 type SideBarContextValue = {
-  sideBarState: sidebarContextState;
-  setSideBarState:Dispatch<SetStateAction<sidebarContextState>>
+  sideBarState: sidebarContextType;
+  setSideBarState:Dispatch<SetStateAction<sidebarContextType>>
 }
  
 const sideBarCtxDefaultValue: SideBarContextValue = {
-    sideBarState: {open: false, data: ""},
+    sideBarState: {open: false, data: null},
     setSideBarState: () => {}
 }
 
@@ -41,7 +42,7 @@ export const sideBarContext = React.createContext<SideBarContextValue>(sideBarCt
 export default function BasePage() {
     const dispatch = useDispatch()
     const [value, setValue] = React.useState<Date | null>( new Date())
-    const [sideBarState, setSideBarState] = React.useState<sidebarContextState>({open: false, data: ""})
+    const [sideBarState, setSideBarState] = React.useState<sidebarContextType>({open: false, data: null})
     const userState = useAppSelector((state) => state.AuthReducer)
     const data = React.useRef()
 
@@ -65,7 +66,7 @@ export default function BasePage() {
                             background: "#9acd32", 
                             borderColor: "yellowgreen"
                         }} 
-                        onClick={() => { dispatch(fetchEvents()); setSideBarState({open: true, data: ""})} } 
+                        onClick={() => { dispatch(fetchEvents()); setSideBarState({open: true, data: userState})} } 
                         className="font-sans flex items-center py-1 px-4 rounded-md border-2 border-grey-500"
                     >
                         Add New Event

@@ -12,7 +12,9 @@ const initialState: AuthState = {
     refresh: "",
     id: -1,
     is_active: false ,
-    username: "",   
+    username: "",
+    firstname: "",
+    lastname: ""
 }
 
 export const AuthSlice = createSlice({
@@ -38,7 +40,9 @@ export const AuthSlice = createSlice({
             state.refresh = payload.refresh 
             state.id = payload.id
             state.is_active = payload.is_active
-            state.username = payload.username     
+            state.username = payload.username
+            state.firstname = payload.firstname     
+            state.lastname = payload.lastname     
         })
 
     }

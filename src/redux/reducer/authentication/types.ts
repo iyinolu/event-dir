@@ -6,6 +6,8 @@ export interface AuthState {
     id:number,
     is_active: boolean,
     username: string,
+    firstname: string,
+    lastname: string
 }
 
 export interface LoginPayLoad {
