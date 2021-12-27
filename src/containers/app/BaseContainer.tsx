@@ -13,8 +13,9 @@ import { ThemeProvider } from '@material-ui/core';
 import theme from '../../utils/theme'
 import { fetchEvents } from '../../redux/thunk';
 import { withStyles, makeStyles } from '@material-ui/styles';
-import { useAppSelector } from '../../utils/hooks';
+import { useAppSelector, useAppDispatch } from '../../utils/hooks';
 import { AuthState } from '../../redux/reducer/authentication/types';
+import { Event } from '../../redux/reducer/app/types';
 
 
 interface NavContextInterface<T> {
@@ -35,16 +36,37 @@ const sideBarCtxDefaultValue: SideBarContextValue = {
     setSideBarState: () => {}
 }
 
+// type EventListContextType = {
+//     events: Event[]
+// }
+
+// type EventListContextValue = {
+//     eventState: EventListContextType,
+//     setEventState: Dispatch<SetStateAction<Event[]>>
+// }
+
+// const eventListCtxDefaultValue: EventListContextValue = {
+//     eventState: {events: []},
+//     setEventState: () => {}
+// }
+
 export const navBarContext = React.createContext<NavContextInterface<any> | null>(null)
 export const sideBarContext = React.createContext<SideBarContextValue>(sideBarCtxDefaultValue)
 
+// export const eventListContext = React.createContext<EventListContextValue>(eventListCtxDefaultValue)
+
 
 export default function BasePage() {
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const [value, setValue] = React.useState<Date | null>( new Date())
     const [sideBarState, setSideBarState] = React.useState<sidebarContextType>({open: false, data: null})
     const userState = useAppSelector((state) => state.AuthReducer)
+    const eventStateValue = useAppSelector((state) => state.AppReducer.event)
     const data = React.useRef()
+
+    React.useEffect(() => {
+        dispatch(fetchEvents());
+    },[dispatch])
 
 
     return (
@@ -66,7 +88,7 @@ export default function BasePage() {
                             background: "#9acd32", 
                             borderColor: "yellowgreen"
                         }} 
-                        onClick={() => { dispatch(fetchEvents()); setSideBarState({open: true, data: userState})} } 
+                        onClick={() => { setSideBarState({open: true, data: userState})} } 
                         className="font-sans flex items-center py-1 px-4 rounded-md border-2 border-grey-500"
                     >
                         Add New Event
@@ -80,7 +102,7 @@ export default function BasePage() {
                 <div className="h-full min-h-full">
                     <div className="grid row-span-4" style={{ height: "90%", minHeight: "90%"}}>
                         <div className="flex flex-col items-center flex-none col-start-1 col-end-7 box-border h-full min-h-full min-w-full">   
-                            <EventList />
+                            <EventList events={eventStateValue} />
                         </div>
                         <div className="flex flex-col items-center justify-start col-start-7 col-end-13 box-border">
                             <ThemeProvider theme={theme}> 
@@ -96,3 +118,4 @@ export default function BasePage() {
 
 
 /* <Button onClick={() => dispatch(SignOutAction())}>logout</Button> */
+// dispatch(fetchEvents());

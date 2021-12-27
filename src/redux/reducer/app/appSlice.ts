@@ -16,7 +16,7 @@ export const AppSlice = createSlice({
             console.log(state)
         });
         builder.addCase(fetchEvents.fulfilled, (state, {payload}) => {
-            console.log(payload)
+            state.event = payload
         })
     }
 })
