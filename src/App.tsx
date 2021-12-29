@@ -4,14 +4,26 @@ import './App.css';
 import { RootState } from './redux/store';
 import { LockClosedIcon } from '@heroicons/react/solid'
 import { useSelector, useDispatch } from 'react-redux'
-import { AuthBasePage } from "./auth/authPage";
-import BasePage from "./app/index"
+import { AuthBasePage } from "./containers/auth/AuthContainer";
+import { useAppSelector } from './utils/hooks';
+import BasePage from "./containers/app/BaseContainer";
+import { verifyLoggedInStatus } from './utils/helpers';
+import "tailwindcss/tailwind.css"
+
 
 function App() {
-  const isAuth = useSelector((state: RootState) => state.AuthReducer.isLogin)
+  const isAuth = useAppSelector((state) => state.AuthReducer.isLogin)
+  const refreshToken = useAppSelector((state) => state.AuthReducer.refresh)
+  const [isLoggedIn, setLogin] = React.useState(false)
+
+  React.useLayoutEffect(() => {
+    if (refreshToken) {
+      setLogin(verifyLoggedInStatus(refreshToken, isAuth))
+    } 
+  }, [isAuth, refreshToken])
 
   const currentPage = () => {
-    switch (isAuth) {
+    switch (isLoggedIn) {
       case false: 
         return <AuthBasePage />
       case true: 
