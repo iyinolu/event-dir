@@ -102,7 +102,7 @@ export default function BasePage() {
                 <div className="h-full min-h-full">
                     <div className="grid row-span-4" style={{ height: "90%", minHeight: "90%"}}>
                         <div className="flex flex-col items-center flex-none col-start-1 col-end-7 box-border h-full min-h-full min-w-full">   
-                            <EventList events={eventStateValue} />
+                            <EventList/>
                         </div>
                         <div className="flex flex-col items-center justify-start col-start-7 col-end-13 box-border">
                             <ThemeProvider theme={theme}> 
