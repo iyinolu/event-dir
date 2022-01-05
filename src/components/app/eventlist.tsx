@@ -67,7 +67,7 @@ export default function EventList() {
                 {showEvents(eventStateValue)}
             </div>  
             <viewEventContext.Provider value={{viewEvent, setViewEvent}}>
-                <ShowEvent />
+                <ShowEvent/>
             </viewEventContext.Provider>
         </>
     )

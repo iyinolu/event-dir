@@ -5,6 +5,7 @@ import { viewEventContext } from './eventlist';
 import { makeStyles } from '@material-ui/styles';
 import { CloseButton } from './styled';
 import { XIcon } from '@heroicons/react/outline';
+import { Event } from '../../redux/reducer/app/types';
 
 const useStyles = makeStyles({
     paperRoot: {

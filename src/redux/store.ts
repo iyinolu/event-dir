@@ -14,6 +14,8 @@ import {
     PURGE,
     REGISTER
 } from 'redux-persist'
+import { ClearAppState } from './reducer/app/appSlice';
+import { SignOutAction } from './reducer/authentication/authSlice';
 
 const rootReducer = combineReducers({AuthReducer, AppReducer})
 const persistConfig = {
@@ -31,6 +33,12 @@ export const store = configureStore({
       },
     }),
 })
+
+export const logout = () => {
+  // clear all reducer state here.
+  store.dispatch(ClearAppState())
+  store.dispatch(SignOutAction())
+}
 
 export const persistor = persistStore(store)
 export type RootState = ReturnType<typeof store.getState>

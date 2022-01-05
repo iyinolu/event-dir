@@ -32,8 +32,7 @@ export const storageService = {
 
 export const refreshTokValid = (token: string) => {
     var decoded  = jwt_decode<any>(token);
-    var now = new Date();
-    var isValid = now > decoded.exp;
+    var isValid = decoded.exp*1000 > Date.now()
     return isValid;
 }
 

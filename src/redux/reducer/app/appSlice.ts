@@ -10,7 +10,11 @@ const initialState: initialAppState = {
 export const AppSlice = createSlice({
     name: "app",
     initialState,
-    reducers: {},
+    reducers: {
+        ClearAppState: (state) => {
+            state.event = []
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(fetchEvents.pending, (state) => {
             console.log(state)
@@ -20,5 +24,5 @@ export const AppSlice = createSlice({
         })
     }
 })
-
+export const { ClearAppState } = AppSlice.actions
 export default AppSlice.reducer
