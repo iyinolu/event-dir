@@ -34,6 +34,11 @@ const useStyles = makeStyles({
         alignItems: "start",
         justifyContent: "flex-start",
         padding: "20px 35px"
+    },
+    eventTitle: {
+        fontSize: "35px",
+        fontWeight: 700,
+        lineHeight: "normal",
     }
 })
 
@@ -41,23 +46,38 @@ export function ShowEvent() {
     const classes = useStyles()
     const context = React.useContext(viewEventContext);
     const {viewEvent, setViewEvent} = context;
+    
+    const formatDate = (date:string|undefined) => {
+        if (date) {
+            let dateObj = new Date(date)   
+            let _dateObj = dateObj.toDateString().split(" ")
+            var renderDateFormat = `${_dateObj[1]} ${_dateObj[2]}, ${_dateObj[3]}`
+        } else {
+            return " "
+        }
+        return renderDateFormat
+    }
     return (
         <Dialog open={viewEvent.open} classes={{ container: viewEvent.open ? classes.container : "" }} PaperProps={{classes: {root: classes.paperRoot}}}>
             <div className={classes.leftHalf}>
-                <h2 style={{ color: "white", fontSize: "30px", fontWeight: 600}}>
-                    July 4, 2021
-                </h2>
-                <p style={{ color: 'yellowgreen' }}>Monday</p>
-            </div>
+                <div>
+                    <h2 style={{ color: "white", fontSize: "30px", fontWeight: 600}}>
+                        {formatDate(viewEvent.data?.event_date)}
+                    </h2>
+                    <p style={{ color: 'yellowgreen' }}>Monday</p>
+                </div>
+            </div>        
             <div className={classes.rightHalf}>
                 <span style={{ display: 'flex', flexDirection: "row-reverse", width: "100%"}}>
                     <CloseButton onClick={() => setViewEvent({open: false, data: null})}>
                         <XIcon className="h-5 w-5"/>
                     </CloseButton>
                 </span>
-                <p style={{ color: "yellowgreen" }}>Event</p>
-                <h1 style={{ fontSize: "39px"}}>Independence Day</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                <p className="mt-3" style={{ color: "yellowgreen" }}>Event</p>
+                <h1 className={classes.eventTitle}>
+                    {viewEvent.data?.title}
+                </h1>
+                <p style={{ marginTop: "20px", color: "#919191"}}>{viewEvent.data?.content}</p>
                 
             </div>
             

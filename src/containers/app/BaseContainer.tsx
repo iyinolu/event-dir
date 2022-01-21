@@ -36,21 +36,17 @@ const sideBarCtxDefaultValue: SideBarContextValue = {
     setSideBarState: () => {}
 }
 
-// type EventListContextType = {
-//     events: Event[]
-// }
+type navBarContextType = {
+    sideBarCtx: SideBarContextValue
+    username: string
+}
 
-// type EventListContextValue = {
-//     eventState: EventListContextType,
-//     setEventState: Dispatch<SetStateAction<Event[]>>
-// }
+const navBarCtxDefaultValue: navBarContextType = {
+    sideBarCtx: sideBarCtxDefaultValue,
+    username: ""
+}
 
-// const eventListCtxDefaultValue: EventListContextValue = {
-//     eventState: {events: []},
-//     setEventState: () => {}
-// }
-
-export const navBarContext = React.createContext<NavContextInterface<any> | null>(null)
+export const navBarContext = React.createContext<navBarContextType>(navBarCtxDefaultValue)
 export const sideBarContext = React.createContext<SideBarContextValue>(sideBarCtxDefaultValue)
 
 // export const eventListContext = React.createContext<EventListContextValue>(eventListCtxDefaultValue)
@@ -63,6 +59,11 @@ export default function BasePage() {
     const userState = useAppSelector((state) => state.AuthReducer)
     const eventStateValue = useAppSelector((state) => state.AppReducer.event)
     const data = React.useRef()
+    const _access_sidebar = {sideBarState: sideBarState, setSideBarState: setSideBarState }
+    const navBarCtx = {
+        sideBarCtx: _access_sidebar,
+        username: userState.firstname
+    }
 
     React.useEffect(() => {
         dispatch(fetchEvents());
@@ -72,7 +73,7 @@ export default function BasePage() {
     return (
         <div className="max-h-screen min-h-screen h-screen" style={{ background: "black"}}>
             <div className="h-1/5">
-                <navBarContext.Provider value={{ data }}>
+                <navBarContext.Provider value={{ ...navBarCtx  }}>
                     <NavigationBar userState={userState}  />
                 </navBarContext.Provider>
                 <sideBarContext.Provider value={{ sideBarState, setSideBarState }}>
@@ -88,7 +89,7 @@ export default function BasePage() {
                             background: "#9acd32", 
                             borderColor: "yellowgreen"
                         }} 
-                        onClick={() => { setSideBarState({open: true, data: userState})} } 
+                        onClick={() => { }}
                         className="font-sans flex items-center py-1 px-4 rounded-md border-2 border-grey-500"
                     >
                         Add New Event
