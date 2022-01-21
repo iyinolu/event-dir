@@ -57,6 +57,7 @@ export function ShowEvent() {
         }
         return renderDateFormat
     }
+    
     return (
         <Dialog open={viewEvent.open} classes={{ container: viewEvent.open ? classes.container : "" }} PaperProps={{classes: {root: classes.paperRoot}}}>
             <div className={classes.leftHalf}>

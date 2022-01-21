@@ -15,10 +15,13 @@ const useStyles = makeStyles(({
     }
 }))
 
-export default function Calendar() {
+export default function Calendar({callbackFn}:{
+    callbackFn: (date:string) => void;
+}) {
     const classes = useStyles()
     const dispatch = useDispatch()
     const [value, setValue] = React.useState<Date | null>( new Date())
+    const displayDate = React.useRef<any>(new Date())
 
     const handleAddNewEventWithDoubleClick = (e:React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
         switch (e.detail) {
@@ -26,7 +29,7 @@ export default function Calendar() {
                 console.log('single click')
                 break;
             case 2:
-                console.log('double click')
+                callbackFn(displayDate.current)
                 break;
             default:
                 console.log('single click')
@@ -44,6 +47,7 @@ export default function Calendar() {
                 label="Date desktop"
                 value={value}
                 onChange={e => {
+                    displayDate.current = e
                     setValue(e)
                 }}
                 open={true}

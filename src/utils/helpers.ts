@@ -45,3 +45,14 @@ export const capitalize = (input:string) => {
     var format = `${input[0].toUpperCase()}${input.slice(1)}`
     return format
 }
+
+export const formatDate = (date:string|undefined) => {
+    if (date) {
+        let dateObj = new Date(date)   
+        let _dateObj = dateObj.toDateString().split(" ")
+        var renderDateFormat = `${_dateObj[1]} ${_dateObj[2]}, ${_dateObj[3]}`
+    } else {
+        return " "
+    }
+    return renderDateFormat
+}
