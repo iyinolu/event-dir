@@ -26,13 +26,11 @@ export default function Calendar({callbackFn}:{
     const handleAddNewEventWithDoubleClick = (e:React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
         switch (e.detail) {
             case 1: 
-                console.log('single click')
                 break;
             case 2:
                 callbackFn(displayDate.current)
                 break;
-            default:
-                console.log('single click')
+            default:                
                 break;
         }
     }

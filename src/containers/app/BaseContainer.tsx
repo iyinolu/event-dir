@@ -51,7 +51,7 @@ export default function BasePage() {
         sideBarCtx: _access_sidebar,
         username: userState.firstname
     }
-    const [addEventDialog, setAddEventDialog] = React.useState<{open: boolean, date: ''}>({open: false, date: ''})
+    const [addEventDialog, setAddEventDialog] = React.useState<{open: boolean, date: string}>({open: false, date: ''})
 
     React.useEffect(() => {
         dispatch(fetchEvents());
@@ -90,7 +90,7 @@ export default function BasePage() {
                         </div>
                         <div className="flex flex-col items-center justify-start col-start-7 col-end-13 box-border">
                             <ThemeProvider theme={theme}> 
-                                <Calendar callbackFn={(date: string) => setAddEventDialog({open: true, date: ''})} />
+                                <Calendar callbackFn={(date: string) => setAddEventDialog({open: true, date: date})} />
                             </ThemeProvider>
                         </div>
                     </div>
