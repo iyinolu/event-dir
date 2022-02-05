@@ -5,13 +5,16 @@ import { RootState } from './redux/store';
 import { LockClosedIcon } from '@heroicons/react/solid'
 import { useSelector, useDispatch } from 'react-redux'
 import { AuthBasePage } from "./containers/auth/AuthContainer";
-import { useAppSelector } from './utils/hooks';
+import { useAppSelector, useAppDispatch } from './utils/hooks';
 import BasePage from "./containers/app/BaseContainer";
 import { verifyLoggedInStatus } from './utils/helpers';
+import { fetchEventsCategories } from './redux/thunk';
 import "tailwindcss/tailwind.css"
 
 
+
 function App() {
+  const dispatch = useAppDispatch()
   const {isLogin, refresh} = useAppSelector((state) => state.AuthReducer)
   const [isLoggedIn, setLogin] = React.useState(false)
 
@@ -20,6 +23,12 @@ function App() {
       setLogin(verifyLoggedInStatus(refresh, isLogin))
     } 
   }, [isLogin, refresh])
+
+  React.useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(fetchEventsCategories())
+    }
+  })
 
   const currentPage = () => {
     switch (isLoggedIn) {

@@ -9,6 +9,8 @@ import { Event } from '../../redux/reducer/app/types';
 import { formatDate } from '../../utils/helpers';
 import Select, { StylesConfig } from 'react-select';
 import { Height } from '@material-ui/icons';
+import { useAppSelector } from '../../utils/hooks';
+import { EventCategory } from '../../redux/reducer/app/types';
 
 const useStyles = makeStyles({
     paperRoot: {
@@ -126,12 +128,17 @@ const selectStyles: StylesConfig = {
 const AddEventDialog: React.FC<addNewEventProps> = ({state, callbackFn}) => {
     const classes = useStyles()
     const [event, setEvent] = React.useState({title: ""})
+    const categories = useAppSelector<EventCategory[]>(state => state.AppReducer.eventCategories)    
+    const options = React.useRef<{ value: number; label: string; }[]>()
 
-    const options = [
-        { value: 'chocolate', label: 'Chocolate' },
-        { value: 'strawberry', label: 'Strawberry' },
-        { value: 'vanilla', label: 'Vanilla' }
-    ]    
+    React.useLayoutEffect(() => {
+        options.current = categories.map((category) => {
+            return {
+                value: category.pk,
+                label: category.category_name
+            }
+        })
+    }, [categories])
 
     return (
         <Dialog open={state.open} classes={{ container: state.open ? classes.container : "" }} PaperProps={{classes: {root: classes.paperRoot}}}>
@@ -190,7 +197,7 @@ const AddEventDialog: React.FC<addNewEventProps> = ({state, callbackFn}) => {
                             </div>
                             <span className={classes.footer}>
                                 <Select
-                                    options={options}
+                                    options={options.current}
                                     menuPlacement='top'
                                     styles={selectStyles}
                                 /> 

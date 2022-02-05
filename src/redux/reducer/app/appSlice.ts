@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { createSlice } from '@reduxjs/toolkit'
-import { fetchEvents } from '../../thunk'
+import { fetchEvents, fetchEventsCategories } from '../../thunk'
 import { initialAppState } from './types'
 
 const initialState: initialAppState = {
-    event: []
+    event: [],
+    eventCategories: []
 }
 
 export const AppSlice = createSlice({
@@ -21,6 +22,9 @@ export const AppSlice = createSlice({
         });
         builder.addCase(fetchEvents.fulfilled, (state, {payload}) => {
             state.event = payload
+        });
+        builder.addCase(fetchEventsCategories.fulfilled, (state, {payload}) => {
+            state.eventCategories = payload
         })
     }
 })

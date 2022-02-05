@@ -5,6 +5,13 @@ export type Event = {
     tag: string;
 }
 
+export type EventCategory = {
+    pk: number;
+    owner: number;
+    category_name: string;
+}
+
 export type initialAppState = {
     event: Event[];
+    eventCategories: EventCategory[];
 }

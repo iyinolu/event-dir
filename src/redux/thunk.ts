@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { LoginPayLoad } from './reducer/authentication/types';
+import { EventCategory } from './reducer/app/types';
 import jwt_decode from 'jwt-decode';
 import axios from 'axios';
 
@@ -34,7 +35,6 @@ type TokenClaim = {
     user: UserTokenData;
 }
 
-
 export const login = createAsyncThunk<UserInfo, LoginPayLoad>(
     'user/login',
     async (loginBody: LoginPayLoad) => {
@@ -52,6 +52,15 @@ export const fetchEvents = createAsyncThunk<Event[]>(
     async () => {
         const response = await axios.get("http://127.0.0.1:8000/api/events/")
         const data:Event[] = response.data
+        return data
+    }
+)
+
+export const fetchEventsCategories = createAsyncThunk<EventCategory[]>(
+    'events/getCategory',
+    async () => {
+        const response = await axios.get("http://127.0.0.1:8000/api/category/")
+        const data:EventCategory[] = response.data
         return data
     }
 )
