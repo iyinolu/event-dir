@@ -1,12 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
-import { Button, Dialog, Divider } from '@material-ui/core';
+import { Dialog, Divider } from '@material-ui/core';
 import { addNewEventProps } from '../../containers/app/types'
 import { makeStyles } from "@material-ui/styles"
 import { CloseButton } from './styled';
 import { XIcon, BellIcon } from '@heroicons/react/outline';
 import { Event } from '../../redux/reducer/app/types';
 import { formatDate } from '../../utils/helpers';
+import Select, { StylesConfig } from 'react-select';
+import { Height } from '@material-ui/icons';
 
 const useStyles = makeStyles({
     paperRoot: {
@@ -63,13 +65,73 @@ const useStyles = makeStyles({
     footer: {
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-betweeen'
+        justifyContent: 'space-between',
+        marginTop: "20px",
+    },
+    submitBtn: {
+        fontSize: "13px",
+        color: "lightgrey",
+        backgroundColor: "rgb(42, 42, 42)",
+        padding: "7px 20px",
+        borderRadius: "5px",
     }
 })
+
+const selectStyles: StylesConfig = {
+    container: (styles) => ({ ...styles}),
+    control:(provided, state) => {
+        return ({
+        ...provided,
+        borderRadius: 5,
+        borderColor: "#2a2a2a",
+        backgroundColor: "#2a2a2a",
+        "&:hover": {
+            borderColor: "#2a2a2a"
+        }
+    })},
+    option: (styles) => {
+        return({
+            ...styles,
+            backgroundColor: "grey",
+            fontSize: "12px"
+        })
+    },
+    singleValue: (styles) => {
+        return({
+            ...styles,
+            backgroundColor: "#0f0e0e",
+            color:"grey",
+            fontSize: '12px',
+            padding: "2px 9px",
+            borderRadius: "5px"
+        })
+    },
+    menuList: (styles) => {
+        return({
+            ...styles,
+            backgroundColor: "#0f0e0e",
+            padding: 0,
+        })
+    },
+    placeholder: (styles) => {
+        return({
+            ...styles,
+            fontSize: "13px",
+            color: 'lightgrey'
+        })
+    },
+    
+}
 
 const AddEventDialog: React.FC<addNewEventProps> = ({state, callbackFn}) => {
     const classes = useStyles()
     const [event, setEvent] = React.useState({title: ""})
+
+    const options = [
+        { value: 'chocolate', label: 'Chocolate' },
+        { value: 'strawberry', label: 'Strawberry' },
+        { value: 'vanilla', label: 'Vanilla' }
+    ]    
 
     return (
         <Dialog open={state.open} classes={{ container: state.open ? classes.container : "" }} PaperProps={{classes: {root: classes.paperRoot}}}>
@@ -127,8 +189,16 @@ const AddEventDialog: React.FC<addNewEventProps> = ({state, callbackFn}) => {
                                 />
                             </div>
                             <span className={classes.footer}>
-                                <Button>Tag</Button>
-                                <Button>Submit</Button>
+                                <Select
+                                    options={options}
+                                    menuPlacement='top'
+                                    styles={selectStyles}
+                                /> 
+                                <button 
+                                    className={classes.submitBtn}
+                                >
+                                    Create
+                                </button>
                             </span>
                         </form>
                     </div>
