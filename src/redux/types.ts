@@ -26,3 +26,11 @@ export type TokenClaim = {
     token_type: string;
     user: UserTokenData;
 }
+
+export type EventPayload = {
+    event_date: Date
+    title: string,
+    content: string,
+    tag: number|undefined,
+    owner: number,
+}

@@ -9,8 +9,11 @@ import { Event } from '../../redux/reducer/app/types';
 import { formatDate } from '../../utils/helpers';
 import Select, { StylesConfig } from 'react-select';
 import { Height } from '@material-ui/icons';
-import { useAppSelector } from '../../utils/hooks';
+import { useAppSelector, useAppDispatch } from '../../utils/hooks';
 import { EventCategory } from '../../redux/reducer/app/types';
+import { AuthState } from '../../redux/reducer/authentication/types';
+import { createNewEvent } from '../../redux/thunk';
+import { EventPayload } from '../../redux/types';
 
 const useStyles = makeStyles({
     paperRoot: {
@@ -79,7 +82,18 @@ const useStyles = makeStyles({
     }
 })
 
-const selectStyles: StylesConfig = {
+type FormData = {
+    title: string, 
+    content: string, 
+    category: number|undefined
+}
+
+type CategoryOptions = { 
+    value: number; 
+    label: string; 
+}
+
+const selectStyles: StylesConfig<CategoryOptions, false> = {
     container: (styles) => ({ ...styles}),
     control:(provided, state) => {
         return ({
@@ -127,18 +141,35 @@ const selectStyles: StylesConfig = {
 
 const AddEventDialog: React.FC<addNewEventProps> = ({state, callbackFn}) => {
     const classes = useStyles()
-    const [event, setEvent] = React.useState({title: ""})
+    const dispatch = useAppDispatch()
+    const [event, setEvent] = React.useState<FormData>({title: "", content: "", category: -1})
     const categories = useAppSelector<EventCategory[]>(state => state.AppReducer.eventCategories)    
-    const options = React.useRef<{ value: number; label: string; }[]>()
+    const authUser = useAppSelector<AuthState>(state => state.AuthReducer)    
+    const options = React.useRef<CategoryOptions[]>()
 
-    React.useLayoutEffect(() => {
-        options.current = categories.map((category) => {
-            return {
-                value: category.pk,
-                label: category.category_name
-            }
-        })
+    React.useEffect(() => {
+        if (categories) {
+            options.current = categories.map((category) => {
+                return {
+                    value: category.pk,
+                    label: category.category_name
+                }
+            })
+        }
     }, [categories])
+
+    const onCreateEvent = (e: React.SyntheticEvent) => {
+        e.preventDefault()
+        let eventPayload:EventPayload = {
+            event_date: new Date(),
+            title: event.title,
+            content: event.content,
+            tag: event.category,
+            owner: authUser.id,
+        }
+        dispatch(createNewEvent(eventPayload))
+        return eventPayload
+    }
 
     return (
         <Dialog open={state.open} classes={{ container: state.open ? classes.container : "" }} PaperProps={{classes: {root: classes.paperRoot}}}>
@@ -163,7 +194,7 @@ const AddEventDialog: React.FC<addNewEventProps> = ({state, callbackFn}) => {
                     
                         <span className={classes.addEvent}>Add Event</span>
                     
-                        <form className='pt-6'>
+                        <form className='pt-6' onSubmit={onCreateEvent}>
                             <div>
                                 <label htmlFor="email-address" className="sr-only">
                                     Title
@@ -176,7 +207,7 @@ const AddEventDialog: React.FC<addNewEventProps> = ({state, callbackFn}) => {
                                     required
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border text-gray-200 placeholder-gray-200 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="Title"
-                                    onChange={(e) => {setEvent({title: e.target.value})}}
+                                    onChange={(e) => {setEvent({...event, title: e.target.value})}}
                                     style={{ background: '#2a2a2a', borderColor: '#535353'}}
                                 />
                                 </div>
@@ -185,13 +216,13 @@ const AddEventDialog: React.FC<addNewEventProps> = ({state, callbackFn}) => {
                                     Content
                                 </label>
                                 <textarea
-                                    id="event-title"
-                                    name="title"
+                                    id="event-details"
+                                    name="content"
                                     autoComplete="false"
                                     required
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border text-gray-200 placeholder-gray-200 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                    placeholder="Details"
-                                    onChange={(e) => {}}
+                                    placeholder="Content"
+                                    onChange={(e) => {setEvent({...event, content: e.target.value})}}
                                     style={{ height: '150px', background: '#2a2a2a', borderColor: '#535353'}}
                                 />
                             </div>
@@ -200,6 +231,7 @@ const AddEventDialog: React.FC<addNewEventProps> = ({state, callbackFn}) => {
                                     options={options.current}
                                     menuPlacement='top'
                                     styles={selectStyles}
+                                    onChange={(option) => setEvent({...event, category: option?.value})}
                                 /> 
                                 <button 
                                     className={classes.submitBtn}
