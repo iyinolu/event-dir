@@ -10,10 +10,11 @@ import { formatDate } from '../../utils/helpers';
 import Select, { StylesConfig } from 'react-select';
 import { Height } from '@material-ui/icons';
 import { useAppSelector, useAppDispatch } from '../../utils/hooks';
-import { EventCategory } from '../../redux/reducer/app/types';
+import { EventCategory, initialAppState } from '../../redux/reducer/app/types';
 import { AuthState } from '../../redux/reducer/authentication/types';
 import { createNewEvent } from '../../redux/thunk';
 import { EventPayload } from '../../redux/types';
+import { updateCreateEventStatus } from '../../redux/actions/app';
 
 const useStyles = makeStyles({
     paperRoot: {
@@ -144,6 +145,7 @@ const AddEventDialog: React.FC<addNewEventProps> = ({state, callbackFn}) => {
     const dispatch = useAppDispatch()
     const [event, setEvent] = React.useState<FormData>({title: "", content: "", category: -1})
     const categories = useAppSelector<EventCategory[]>(state => state.AppReducer.eventCategories)    
+    const eventState = useAppSelector<initialAppState>(state => state.AppReducer)    
     const authUser = useAppSelector<AuthState>(state => state.AuthReducer)    
     const options = React.useRef<CategoryOptions[]>()
 
@@ -233,11 +235,21 @@ const AddEventDialog: React.FC<addNewEventProps> = ({state, callbackFn}) => {
                                     styles={selectStyles}
                                     onChange={(option) => setEvent({...event, category: option?.value})}
                                 /> 
-                                <button 
+                                {!eventState.creatingEventDone && <button 
                                     className={classes.submitBtn}
                                 >
                                     Create
-                                </button>
+                                </button>}
+                                {eventState.creatingEventDone && <button 
+                                    className={classes.submitBtn}
+                                    type="button"
+                                    onClick = {() => {
+                                        callbackFn("")
+                                        dispatch(updateCreateEventStatus(false))
+                                    }}
+                                >
+                                    Done
+                                </button>}
                             </span>
                         </form>
                     </div>
