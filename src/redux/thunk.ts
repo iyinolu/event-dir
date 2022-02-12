@@ -38,14 +38,12 @@ export const fetchEventsCategories = createAsyncThunk<EventCategory[]>(
     }
 )
 
-const headers = {
-    'Content-Type': 'application/json',
-}
-
 export const createNewEvent = createAsyncThunk<Event, EventPayload>(
     'event/create',
     async (data: EventPayload) => {
-        const response = await axios.post("http://127.0.0.1:8000/api/events/", JSON.stringify(data))
+        const response = await axios.post("http://127.0.0.1:8000/api/events/", JSON.stringify(data), {headers: {
+            "Content-Type": "application/json"
+        }})
         const EventData:Event = response.data
         return EventData
     }

@@ -6,6 +6,9 @@ import {DatePicker, Day} from "@material-ui/pickers";
 import { makeStyles } from "@material-ui/styles"
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
 import { Component } from 'react';
+import UpdateCreateEventStatus from '../../redux/reducer/app/appSlice';
+import { initialAppState } from '../../redux/reducer/app/types';
+import { updateCreateEventStatus } from '../../redux/actions/app';
 // import { PickersDay }
 const useStyles = makeStyles(({
     root: {
@@ -22,12 +25,14 @@ export default function Calendar({callbackFn}:{
     const dispatch = useDispatch()
     const [value, setValue] = React.useState<Date | null>( new Date())
     const displayDate = React.useRef<any>(new Date())
+    
 
     const handleAddNewEventWithDoubleClick = (e:React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
         switch (e.detail) {
             case 1: 
                 break;
             case 2:
+                dispatch(updateCreateEventStatus(false))
                 callbackFn(displayDate.current)
                 break;
             default:                
