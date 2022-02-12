@@ -27,7 +27,11 @@ declare module '@material-ui/core/styles/overrides' {
 
 // A custom theme for this app
 const theme = createTheme({
-
+  props: {
+    MuiButtonBase: {
+      disableRipple: true,
+    }
+  },
   palette: {
     primary: {
       main: '#556cd6',

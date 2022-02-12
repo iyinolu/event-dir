@@ -13,58 +13,9 @@ import DateFnsUtils from '@date-io/date-fns';
 import  axios from 'axios';
 import { refreshTokValid } from "./utils/helpers";
 import { ReloadAccessToken } from "./redux/reducer/authentication/authSlice";
+import interceptor from './utils/axios-config';
 
-axios.interceptors.request.use(
-  (config) => {
-    var token = store.getState().AuthReducer.access
-    if (token && !config.url!.includes("/api/token/")) {
-      config.headers!.Authorization = `Bearer ${token}`
-    }    
-    return config
-  },
-  (error) => {
-    Promise.reject(error)
-  }
-)
-
-axios.interceptors.response.use(
-  (response) => {
-    return response
-  },
-  (error) => {
-    const originalRequest = error.config
-    var token = store.getState().AuthReducer.refresh
-    const isValid = refreshTokValid(token)
-
-    if (!isValid) {
-      //TODO: add redirect to login logic
-      return
-    }
-
-    if (error.response.status === 401 && token) {
-      originalRequest._retry = true;
-
-      const requestOptions = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({refresh: token}),
-      }
-      return fetch("http://127.0.0.1:8000/api/token/refresh/", requestOptions)
-      .then(res => res.json())
-      .then(res => {
-        axios.defaults.headers.common["Authorization"] =
-                "Bearer " + res.access
-        store.dispatch(ReloadAccessToken(res.access))
-        return axios(originalRequest);
-      }).catch(err => {
-        console.log(err)
-      })
-    }
-    Promise.reject(error)
-  }
-  
-)
-
+interceptor(axios)
 
 ReactDOM.render(
   <Provider store={store}>

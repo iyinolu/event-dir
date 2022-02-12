@@ -3,7 +3,6 @@ import React from 'react';
 import axios from 'axios'
 import { LockClosedIcon } from '@heroicons/react/solid'
 import { useSelector, useDispatch } from 'react-redux'
-// import { SignOutAction, LoginAction } from '../../redux/reducer/authentication/authSlice';
 import { storageService } from '../../utils/helpers';
 import { login } from '../../redux/thunk';
 import { LoginPayLoad } from '../../redux/reducer/authentication/types';
@@ -16,15 +15,6 @@ export default function Login() {
     e.preventDefault()
     const body = loginInfo
     dispatch(login(body))
-    // console.log(body)
-    // axios.post("http://127.0.0.1:8000/api/token/", body)
-    // .then(res => {
-    //   if (res.status === 200) {
-    //     storageService.addToStorage("_eventAccesstoken", res.data.access)
-    //     storageService.addToStorage("_eventRefreshtoken", res.data.refresh)
-    //     dispatch(LoginAction({username: loginInfo.email, email: loginInfo.email}))
-    //   }
-    // }).catch(err => console.log(err.response))
   }
 
   return (

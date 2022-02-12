@@ -1,38 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { LoginPayLoad } from './reducer/authentication/types';
-import axios from 'axios';
+import { EventCategory } from './reducer/app/types';
 import jwt_decode from 'jwt-decode';
-
-
-type Event = {
-    event_date: string;
-    title: string;
-    content: string;
-    tag: string;
-}
-type UserInfo = {
-    email: string;
-    access: string;
-    refresh: string;
-    id:number;
-    is_active: boolean;
-    username: string;
-    firstname: string;
-    lastname: string;
-}
-type UserTokenData = {
-    id:number;
-    email: string;
-    is_active: boolean;
-    username: string;
-}
-type TokenClaim = {
-    exp: number;
-    jti: string;
-    token_type: string;
-    user: UserTokenData;
-}
+import axios from 'axios';
+import { Event, TokenClaim, UserInfo, UserTokenData, EventPayload } from './types'
+import { config } from 'process';
 
 
 export const login = createAsyncThunk<UserInfo, LoginPayLoad>(
@@ -55,3 +28,25 @@ export const fetchEvents = createAsyncThunk<Event[]>(
         return data
     }
 )
+
+export const fetchEventsCategories = createAsyncThunk<EventCategory[]>(
+    'events/getCategory',
+    async () => {
+        const response = await axios.get("http://127.0.0.1:8000/api/category/")
+        const data:EventCategory[] = response.data
+        return data
+    }
+)
+
+const headers = {
+    'Content-Type': 'application/json',
+}
+
+export const createNewEvent = createAsyncThunk<Event, EventPayload>(
+    'event/create',
+    async (data: EventPayload) => {
+        const response = await axios.post("http://127.0.0.1:8000/api/events/", JSON.stringify(data))
+        const EventData:Event = response.data
+        return EventData
+    }
+)   

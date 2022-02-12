@@ -32,8 +32,7 @@ export const storageService = {
 
 export const refreshTokValid = (token: string) => {
     var decoded  = jwt_decode<any>(token);
-    var now = new Date();
-    var isValid = now > decoded.exp;
+    var isValid = decoded.exp*1000 > Date.now()
     return isValid;
 }
 
@@ -45,4 +44,15 @@ export const verifyLoggedInStatus = (refresh:string, isLogin:boolean):boolean =>
 export const capitalize = (input:string) => {
     var format = `${input[0].toUpperCase()}${input.slice(1)}`
     return format
+}
+
+export const formatDate = (date:string|undefined) => {
+    if (date) {
+        let dateObj = new Date(date)   
+        let _dateObj = dateObj.toDateString().split(" ")
+        var renderDateFormat = `${_dateObj[1]} ${_dateObj[2]}, ${_dateObj[3]}`
+    } else {
+        return " "
+    }
+    return renderDateFormat
 }
