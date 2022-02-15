@@ -9,7 +9,9 @@ import { Component } from 'react';
 import UpdateCreateEventStatus from '../../redux/reducer/app/appSlice';
 import { initialAppState } from '../../redux/reducer/app/types';
 import { updateCreateEventStatus } from '../../redux/actions/app';
-// import { PickersDay }
+import { fetchEvents } from '../../redux/thunk';
+import { FetchEventPayload } from '../../redux/types';
+
 const useStyles = makeStyles(({
     root: {
         "& .MuiToolbar-root": {
@@ -19,13 +21,17 @@ const useStyles = makeStyles(({
 }))
 
 export default function Calendar({callbackFn}:{
-    callbackFn: (date:string) => void;
+    callbackFn: (date:Date) => void;
 }) {
     const classes = useStyles()
     const dispatch = useDispatch()
-    const [value, setValue] = React.useState<Date | null>( new Date())
+    const [value, setValue] = React.useState<Date>(new Date())
     const displayDate = React.useRef<any>(new Date())
     
+    React.useEffect(() => {
+        const date: FetchEventPayload = {date: value}
+        dispatch(fetchEvents(date))
+    }, [value, dispatch])
 
     const handleAddNewEventWithDoubleClick = (e:React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
         switch (e.detail) {
@@ -51,7 +57,7 @@ export default function Calendar({callbackFn}:{
                 value={value}
                 onChange={e => {
                     displayDate.current = e
-                    setValue(e)
+                    setValue(e ? e : new Date())
                 }}
                 open={true}
                 renderDay={(day, selectedDate, dayInCurrentMonth, dayComponent)  => {

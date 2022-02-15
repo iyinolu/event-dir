@@ -8,7 +8,7 @@ import {
 import { toAbsoluteUrl } from '../../utils/helpers';
 import { Event } from '../../redux/reducer/app/types';
 import { useAppSelector, useAppDispatch } from '../../utils/hooks';
-import { ShowEvent } from './showEvent';
+import { ShowEvent } from './eventdetails';
 
 type Events = {
     events: Event[]

@@ -19,7 +19,7 @@ export type navBarContextType = {
 
 export type addNewEventState = {
     open: boolean,
-    date: string,
+    date: Date,
 }
 
 export type addNewEventProps = {

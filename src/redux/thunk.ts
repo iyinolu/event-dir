@@ -4,7 +4,7 @@ import { LoginPayLoad } from './reducer/authentication/types';
 import { EventCategory } from './reducer/app/types';
 import jwt_decode from 'jwt-decode';
 import axios from 'axios';
-import { Event, TokenClaim, UserInfo, UserTokenData, EventPayload } from './types'
+import { Event, TokenClaim, UserInfo, UserTokenData, EventPayload, FetchEventPayload } from './types'
 import { config } from 'process';
 
 
@@ -20,13 +20,13 @@ export const login = createAsyncThunk<UserInfo, LoginPayLoad>(
     }
 )
 
-export const fetchEvents = createAsyncThunk<Event[]>(
+export const fetchEvents = createAsyncThunk<Event[], FetchEventPayload>(
     'events/getEvents', 
-    async () => {
-        const response = await axios.get("http://127.0.0.1:8000/api/events/")
+    async (date) => {
+        const response = await axios.get(`http://127.0.0.1:8000/api/events?eventDate=${date.date.toISOString().split("T")[0]}`)
         const data:Event[] = response.data
         return data
-    }
+    }   
 )
 
 export const fetchEventsCategories = createAsyncThunk<EventCategory[]>(
