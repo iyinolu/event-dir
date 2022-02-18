@@ -35,6 +35,16 @@ export default function EventList() {
     const [viewEvent, setViewEvent] = React.useState<veiwEventContextType>({open: false, data: null})
 
     const showEvents = (events:Event[]) => {
+        if (events.length < 1) {
+            return (
+                <div style={{ display: "flex", justifyContent: "center", height: "100%" }}>
+                    <div style={{ height: "100%", display: "flex", justifyContent: "center", flexDirection: "column"}}>
+                        <img style={{ height: "50%", marginBottom: "30px"}} src="/media/illustrations/noevent_placeholder.svg" alt="No Event"/>
+                        <p style={{ color: "grey", textAlign: "center", padding: "0px 60px"}}>No Events for the selected day. Double-click on a day to add an event.</p>
+                    </div>
+                </div>  
+            )
+        }
         var eventList = events.map((event, idx) => {
             return (
                 <div className="flex flex-col rounded-2xl h-auto w-full bg-white mb-6 px-5 py-4 border-gray-200" style={{ background: "rgb(0 0 0)", borderColor: "rgb(34 34 34)", borderWidth: "1px"}}>

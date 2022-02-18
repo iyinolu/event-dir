@@ -67,3 +67,19 @@
 ::-webkit-scrollbar-thumb{
   border-radius: 10px
 }
+
+::placeholder {
+  color: grey;
+}
+
+input:-webkit-autofill {
+  background-color: #2a2a2a !important;
+}
+
+input:autofill {
+  background-color: #2a2a2a !important;
+}
+
+::-webkit-input-placeholder {
+  color: grey;
+}

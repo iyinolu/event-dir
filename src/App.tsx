@@ -28,7 +28,7 @@ function App() {
     if (isLoggedIn) {
       dispatch(fetchEventsCategories())
     }
-  })
+  },[isLoggedIn, dispatch])
 
   const currentPage = () => {
     switch (isLoggedIn) {
