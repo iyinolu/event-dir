@@ -1,9 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import './App.css';
-import { RootState } from './redux/store';
-import { LockClosedIcon } from '@heroicons/react/solid'
-import { useSelector, useDispatch } from 'react-redux'
 import { AuthBasePage } from "./containers/auth/AuthContainer";
 import { useAppSelector, useAppDispatch } from './utils/hooks';
 import BasePage from "./containers/app/BaseContainer";

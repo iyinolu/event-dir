@@ -18,15 +18,16 @@ import interceptor from './utils/axios-config';
 interceptor(axios)
 
 ReactDOM.render(
-  <Provider store={store}>
+
     <PersistGate loading={null} persistor={persistor}>
       <React.StrictMode>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <App />
+          <Provider store={store}>
+            <App />
+          </Provider>
         </MuiPickersUtilsProvider>
       </React.StrictMode>    
-    </PersistGate>
-  </Provider>,
+    </PersistGate>,
   document.getElementById('root')
 );
 
