@@ -15,6 +15,8 @@ import { AuthState } from '../../redux/reducer/authentication/types';
 import { createNewEvent } from '../../redux/thunk';
 import { EventPayload } from '../../redux/types';
 import { updateCreateEventStatus } from '../../redux/actions/app';
+import SendIcon from '@material-ui/icons/Send';
+import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
 
 type FormData = {
     title: string, 
@@ -173,6 +175,7 @@ const AddEventDialog: React.FC<addNewEventProps> = ({state, callbackFn}) => {
                                     className={classes.submitBtn}
                                 >
                                     Create
+                                    <SendIcon style={{ marginLeft: "10px"}} />
                                 </button>}
                                 {eventState.creatingEventDone && <button 
                                     className={classes.submitBtn}
@@ -183,6 +186,7 @@ const AddEventDialog: React.FC<addNewEventProps> = ({state, callbackFn}) => {
                                     }}
                                 >
                                     Done
+                                    <DoneOutlineIcon style={{ marginLeft: "10px"}} />
                                 </button>}
                             </span>
                         </form>
@@ -253,10 +257,13 @@ const useStyles = makeStyles({
         marginTop: "20px",
     },
     submitBtn: {
+        display:"flex",
+        alignItems: "center",
         fontSize: "13px",
-        color: "lightgrey",
-        backgroundColor: "rgb(42, 42, 42)",
+        backgroundColor: "#007a5a",
         padding: "7px 20px",
         borderRadius: "5px",
+        textAlign: "center", 
+        color: "white"
     }
 })

@@ -38,3 +38,8 @@ export type EventPayload = {
 export type FetchEventPayload = {
     date: Date
 }
+
+export type FetchEventReturnData = {
+    data: Event[],
+    dateQuery: Date
+}

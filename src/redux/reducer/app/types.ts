@@ -13,6 +13,7 @@ export type EventCategory = {
 
 export type initialAppState = {
     event: Event[];
+    eventCache: any,
     eventCategories: EventCategory[];
     creatingEventDone: boolean;
 }
