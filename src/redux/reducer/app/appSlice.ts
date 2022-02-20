@@ -6,6 +6,7 @@ import { updateCreateEventStatus } from '../../actions/app'
 
 const initialState: initialAppState = {
     event: [],
+    eventCache: {},
     eventCategories: [],
     creatingEventDone: false,
 }
@@ -23,7 +24,16 @@ export const AppSlice = createSlice({
             console.log(state)
         });
         builder.addCase(fetchEvents.fulfilled, (state, {payload}) => {
-            state.event = payload
+            const date = payload.dateQuery.toISOString().split("T")[0]
+            const hasCachedRecord = state.eventCache.hasOwnProperty(date)
+
+            if (hasCachedRecord && state.eventCache[date] !== payload.data) {
+                state.eventCache = {...state.eventCache, [date]: payload.data}
+            } else if (!hasCachedRecord) {
+                state.eventCache = {...state.eventCache, [date]: payload.data}
+            }
+            
+            state.event = payload.data
         });
         builder.addCase(fetchEventsCategories.fulfilled, (state, {payload}) => {
             state.eventCategories = payload

@@ -4,7 +4,8 @@ import { LoginPayLoad } from './reducer/authentication/types';
 import { EventCategory } from './reducer/app/types';
 import jwt_decode from 'jwt-decode';
 import axios from 'axios';
-import { Event, TokenClaim, UserInfo, UserTokenData, EventPayload } from './types'
+import { Event, TokenClaim, UserInfo, UserTokenData, EventPayload, FetchEventPayload, FetchEventReturnData } from './types'
+import { store } from './store';
 import { config } from 'process';
 
 
@@ -20,13 +21,28 @@ export const login = createAsyncThunk<UserInfo, LoginPayLoad>(
     }
 )
 
-export const fetchEvents = createAsyncThunk<Event[]>(
-    'events/getEvents', 
-    async () => {
-        const response = await axios.get("http://127.0.0.1:8000/api/events/")
-        const data:Event[] = response.data
-        return data
+export const fetchEvents = createAsyncThunk<
+    FetchEventReturnData, 
+    FetchEventPayload,
+    {
+        state: any
     }
+>(
+    'events/getEvents', 
+    async (date, thunkAPI) => {
+        let data:Event[];
+        let parsedDate = date.date.toISOString().split("T")[0] 
+        const eventCache = thunkAPI.getState().AppReducer.eventCache
+        
+        if (eventCache.hasOwnProperty(parsedDate)) {
+            data = eventCache[parsedDate]
+        } else {
+            const response = await axios.get(`http://127.0.0.1:8000/api/events?eventDate=${date.date.toISOString().split("T")[0]}`)
+            data = response.data
+        }
+        
+        return {data: data, dateQuery: date.date}
+    }   
 )
 
 export const fetchEventsCategories = createAsyncThunk<EventCategory[]>(

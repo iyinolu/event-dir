@@ -11,6 +11,7 @@ import { fetchEvents } from '../../redux/thunk';
 import { useAppSelector, useAppDispatch } from '../../utils/hooks';
 import { AuthState } from '../../redux/reducer/authentication/types';
 import AddEventDialog from '../../components/app/addevents';
+import { FetchEventPayload } from '../../redux/types';
 
 
 type sidebarContextType = {
@@ -51,10 +52,11 @@ export default function BasePage() {
         sideBarCtx: _access_sidebar,
         username: userState.firstname
     }
-    const [addEventDialog, setAddEventDialog] = React.useState<{open: boolean, date: string}>({open: false, date: ''})
+    const [addEventDialog, setAddEventDialog] = React.useState<{open: boolean, date: Date}>({open: false, date: new Date()})
 
     React.useEffect(() => {
-        dispatch(fetchEvents());
+        let todaysDate: FetchEventPayload = {date: new Date()}
+        dispatch(fetchEvents(todaysDate));
     },[dispatch])
 
     return (
@@ -73,7 +75,7 @@ export default function BasePage() {
                             background: "#9acd32", 
                             borderColor: "yellowgreen"
                         }} 
-                        onClick={() => setAddEventDialog({open: true, date: ''}) }
+                        onClick={() => setAddEventDialog({open: true, date: new Date()}) }
                         className="font-sans flex items-center py-1 px-4 rounded-md border-2 border-grey-500"
                     >
                         Add New Event
@@ -85,12 +87,12 @@ export default function BasePage() {
             <div className="h-4/5">
                 <div className="h-full min-h-full">
                     <div className="grid row-span-4" style={{ height: "90%", minHeight: "90%"}}>
-                        <div className="flex flex-col items-center flex-none col-start-1 col-end-7 box-border h-full min-h-full min-w-full">   
+                        <div style={{ maxWidth: "677px", minWidth: "579px" }} className="flex flex-col items-center flex-none col-start-1 col-end-7 box-border h-full min-h-full min-w-full">   
                             <EventList/>
                         </div>
                         <div className="flex flex-col items-center justify-start col-start-7 col-end-13 box-border">
                             <ThemeProvider theme={theme}> 
-                                <Calendar callbackFn={(date: string) => setAddEventDialog({open: true, date: date})} />
+                                <Calendar callbackFn={(date: Date) => setAddEventDialog({open: true, date: date})} />
                             </ThemeProvider>
                         </div>
                     </div>
@@ -100,7 +102,7 @@ export default function BasePage() {
             <sideBarContext.Provider value={{ sideBarState, setSideBarState }}>
                 <ProfileSideBar />
             </sideBarContext.Provider>
-            <AddEventDialog state={addEventDialog} callbackFn={() => setAddEventDialog({open: false, date: ''})}/>
+            <AddEventDialog state={addEventDialog} callbackFn={() => setAddEventDialog({open: false, date: new Date()})}/>
         </div>
     )
 }

@@ -28,9 +28,18 @@ export type TokenClaim = {
 }
 
 export type EventPayload = {
-    event_date: Date
+    event_date: string,
     title: string,
     content: string,
     tag: number|undefined,
     owner: number,
+}
+
+export type FetchEventPayload = {
+    date: Date
+}
+
+export type FetchEventReturnData = {
+    data: Event[],
+    dateQuery: Date
 }

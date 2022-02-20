@@ -15,73 +15,8 @@ import { AuthState } from '../../redux/reducer/authentication/types';
 import { createNewEvent } from '../../redux/thunk';
 import { EventPayload } from '../../redux/types';
 import { updateCreateEventStatus } from '../../redux/actions/app';
-
-const useStyles = makeStyles({
-    paperRoot: {
-        minHeight: "400px", 
-        minWidth: "60%",
-        display: "flex",
-        background: "rgb(128 128 128 / 80%)",
-        flexDirection: "row"
-    },
-    container: {
-        backdropFilter: "blur(5px)"
-    },
-    leftHalf: {
-        height: "auto",
-        width: "35%",
-        background: "#2a2a2a",
-        padding: "40px 30px"
-    },
-    rightHalf: {
-        height: "auto",
-        width: "65%",
-        background: "#0f0e0e",
-        color: "white",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "start",
-        justifyContent: "flex-start",
-        padding: "20px 35px"
-    },
-    eventTitle: {
-        fontSize: "35px",
-        fontWeight: 700,
-        lineHeight: "normal",
-    },
-    notificationBtn: {
-        position: 'absolute',
-        bottom: '26px',
-        left: '23px',
-        padding: '8px',
-        background: '#9acd32',
-        borderRadius: '26%',
-        boxShadow: 'rgb(170 169 169 / 20%) 0px 0px 15px, rgb(0 0 0 / 15%) 0px 0px 3px 1px',
-        cursor: 'pointer',
-        '& svg': {
-            height: '17px',
-            color: '#0f0e0e',
-        }
-    },
-    addEvent: {
-        fontSize: '20px',
-        fontWeight: 700,
-        color: 'yellowgreen'
-    },
-    footer: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        marginTop: "20px",
-    },
-    submitBtn: {
-        fontSize: "13px",
-        color: "lightgrey",
-        backgroundColor: "rgb(42, 42, 42)",
-        padding: "7px 20px",
-        borderRadius: "5px",
-    }
-})
+import SendIcon from '@material-ui/icons/Send';
+import DoneOutlineIcon from '@material-ui/icons/DoneOutline';
 
 type FormData = {
     title: string, 
@@ -163,7 +98,7 @@ const AddEventDialog: React.FC<addNewEventProps> = ({state, callbackFn}) => {
     const onCreateEvent = (e: React.SyntheticEvent) => {
         e.preventDefault()
         let eventPayload:EventPayload = {
-            event_date: new Date(),
+            event_date: state.date.toISOString().split('T')[0],
             title: event.title,
             content: event.content,
             tag: event.category,
@@ -234,11 +169,13 @@ const AddEventDialog: React.FC<addNewEventProps> = ({state, callbackFn}) => {
                                     menuPlacement='top'
                                     styles={selectStyles}
                                     onChange={(option) => setEvent({...event, category: option?.value})}
+                                    placeholder="Category"
                                 /> 
                                 {!eventState.creatingEventDone && <button 
                                     className={classes.submitBtn}
                                 >
                                     Create
+                                    <SendIcon style={{ marginLeft: "10px"}} />
                                 </button>}
                                 {eventState.creatingEventDone && <button 
                                     className={classes.submitBtn}
@@ -249,6 +186,7 @@ const AddEventDialog: React.FC<addNewEventProps> = ({state, callbackFn}) => {
                                     }}
                                 >
                                     Done
+                                    <DoneOutlineIcon style={{ marginLeft: "10px"}} />
                                 </button>}
                             </span>
                         </form>
@@ -259,3 +197,73 @@ const AddEventDialog: React.FC<addNewEventProps> = ({state, callbackFn}) => {
 }
 
 export default AddEventDialog
+
+const useStyles = makeStyles({
+    paperRoot: {
+        minHeight: "400px", 
+        minWidth: "60%",
+        display: "flex",
+        background: "rgb(128 128 128 / 80%)",
+        flexDirection: "row"
+    },
+    container: {
+        backdropFilter: "blur(5px)"
+    },
+    leftHalf: {
+        height: "auto",
+        width: "35%",
+        background: "#2a2a2a",
+        padding: "40px 30px"
+    },
+    rightHalf: {
+        height: "auto",
+        width: "65%",
+        background: "#0f0e0e",
+        color: "white",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "start",
+        justifyContent: "flex-start",
+        padding: "20px 35px"
+    },
+    eventTitle: {
+        fontSize: "35px",
+        fontWeight: 700,
+        lineHeight: "normal",
+    },
+    notificationBtn: {
+        position: 'absolute',
+        bottom: '26px',
+        left: '23px',
+        padding: '8px',
+        background: '#9acd32',
+        borderRadius: '26%',
+        boxShadow: 'rgb(170 169 169 / 20%) 0px 0px 15px, rgb(0 0 0 / 15%) 0px 0px 3px 1px',
+        cursor: 'pointer',
+        '& svg': {
+            height: '17px',
+            color: '#0f0e0e',
+        }
+    },
+    addEvent: {
+        fontSize: '20px',
+        fontWeight: 700,
+        color: 'yellowgreen'
+    },
+    footer: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginTop: "20px",
+    },
+    submitBtn: {
+        display:"flex",
+        alignItems: "center",
+        fontSize: "13px",
+        backgroundColor: "#007a5a",
+        padding: "7px 20px",
+        borderRadius: "5px",
+        textAlign: "center", 
+        color: "white"
+    }
+})
