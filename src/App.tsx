@@ -6,6 +6,8 @@ import { useAppSelector, useAppDispatch } from './utils/hooks';
 import BasePage from "./containers/app/BaseContainer";
 import { verifyLoggedInStatus } from './utils/helpers';
 import { fetchEventsCategories } from './redux/thunk';
+import { Provider } from 'react-redux'
+import { store, persistor } from './redux/store';
 import "tailwindcss/tailwind.css"
 
 
@@ -38,7 +40,11 @@ function App() {
     }
   }
 
-  return (currentPage())
+  return (
+    <Provider store={store}>
+      {currentPage()}
+    </Provider>
+    )
 }
 
 export default App;
