@@ -9,7 +9,7 @@ import { Event } from '../../redux/reducer/app/types';
 import { formatDate } from '../../utils/helpers';
 import Select, { StylesConfig } from 'react-select';
 import { Height } from '@material-ui/icons';
-import { useAppSelector, useAppDispatch } from '../../utils/hooks';
+import { useAppSelector, useAppDispatch } from '../../App';
 import { EventCategory, initialAppState } from '../../redux/reducer/app/types';
 import { AuthState } from '../../redux/reducer/authentication/types';
 import { createNewEvent } from '../../redux/thunk';

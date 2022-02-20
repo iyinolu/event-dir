@@ -8,7 +8,7 @@ import ProfileSideBar from '../../components/app/profilesidebar';
 import { ThemeProvider } from '@material-ui/core';
 import theme from '../../utils/theme'
 import { fetchEvents } from '../../redux/thunk';
-import { useAppSelector, useAppDispatch } from '../../utils/hooks';
+import { useAppSelector, useAppDispatch } from '../../App';
 import { AuthState } from '../../redux/reducer/authentication/types';
 import AddEventDialog from '../../components/app/addevents';
 import { FetchEventPayload } from '../../redux/types';
