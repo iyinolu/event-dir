@@ -78,7 +78,7 @@ export default function BasePage() {
                         onClick={() => setAddEventDialog({open: true, date: new Date()}) }
                         className="font-sans flex items-center py-1 px-4 rounded-md border-2 border-grey-500"
                     >
-                        Add New Event
+                        Today's Event
                     <PlusCircleIcon className="ml-4 h-5 w-5"/>
                     </button>
                 </div>

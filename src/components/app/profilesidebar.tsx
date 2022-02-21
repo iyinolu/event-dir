@@ -6,17 +6,7 @@ import { withStyles, makeStyles } from '@material-ui/styles';
 import ProfileInfoBlock from './profileinfo';
 import { XIcon } from '@heroicons/react/outline';
 import { CloseButton } from './styled';
-
-const useStyles = makeStyles({
-    root: {
-        width: "30%",
-        backgroundColor: "#f7f7f7"
-    },
-    frame: {
-        padding: "10px",
-        height: "36%"
-    }
-})
+import { logout } from '../../redux/store';
 
 export default function ProfileSideBar() {
     const classes = useStyles()
@@ -40,8 +30,52 @@ export default function ProfileSideBar() {
                 </div>
                 <div className={classes.frame}>
                     <ProfileInfoBlock data={sideBarState.data ? sideBarState.data : null}/>
+                    <div style={{ padding: "0 20px 20px 20px", width: "auto" }}>
+                        <button className={classes.logoutBtn} onClick={logout}>
+                            Logout
+                        </button>
+                    </div>
+                    <hr />
+                    <div style={{ padding: "15px 20px", width: "auto" }}>
+                        <h2 className={classes.upcomingEventHeader}>Upcoming Events</h2>
+                        <div className={classes.upcomingEventPlaceholder}></div>
+                        <div className={classes.upcomingEventPlaceholder}></div>
+                    </div>
                 </div>
             </div>
         </Drawer>
     )
 }
+
+const useStyles = makeStyles({
+    root: {
+        width: "30%",
+        backgroundColor: "#f7f7f7"
+    },
+    frame: {
+        padding: "10px",
+        height: "auto"
+    },
+    logoutBtn: {
+        display:"flex",
+        alignItems: "center",
+        fontSize: "13px",
+        backgroundColor: "#007a5a",
+        padding: "7px 20px",
+        borderRadius: "5px",
+        textAlign: "center", 
+        color: "white"
+    },
+    upcomingEventHeader: {
+        fontSize: "20px", 
+        fontWeight: 800, 
+        color: "#4b5b56",
+        marginBottom: "20px",
+    },
+    upcomingEventPlaceholder: {
+        height: "70px",
+        background: "#e3e3e3",
+        borderRadius: "5px",
+        marginBottom: "15px"
+    }
+})

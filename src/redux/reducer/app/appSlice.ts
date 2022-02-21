@@ -17,6 +17,9 @@ export const AppSlice = createSlice({
     reducers: {
         ClearAppState: (state) => {
             state.event = []
+            state.eventCache = {}
+            state.eventCategories = []
+            state.creatingEventDone = false
         }
     },
     extraReducers: (builder) => {

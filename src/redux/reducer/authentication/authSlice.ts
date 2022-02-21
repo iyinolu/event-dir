@@ -23,7 +23,14 @@ export const AuthSlice = createSlice({
     reducers: {
         SignOutAction: (state) => {
             state.email = ""
-            state.isLogin = false
+            state.isLogin = false          
+            state.access = ""
+            state.refresh = ""
+            state.id = -1
+            state.is_active = false
+            state.username = ""
+            state.firstname = ""
+            state.lastname = ""
         },
         ReloadAccessToken: (state, action: PayloadAction<string> ) => {
             state.access = action.payload
