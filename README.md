@@ -15,10 +15,6 @@
 * Click the create button to create an event.
 * App offers other functionalities including, editing events, editing profile information, adding notificaton for upcoming events, etc.
 
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Available Scripts
 
 In the project directory, you can run:
