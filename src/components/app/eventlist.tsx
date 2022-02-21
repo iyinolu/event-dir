@@ -7,7 +7,7 @@ import {
 } from '@heroicons/react/solid';
 import { toAbsoluteUrl } from '../../utils/helpers';
 import { Event } from '../../redux/reducer/app/types';
-import { useAppSelector, useAppDispatch } from '../../utils/hooks';
+import { useAppSelector, useAppDispatch } from '../../App';
 import { ShowEvent } from './eventdetails';
 
 type Events = {

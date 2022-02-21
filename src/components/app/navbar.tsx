@@ -3,7 +3,7 @@ import React from 'react';
 import { SunIcon } from '@heroicons/react/solid';
 import { AuthState } from '../../redux/reducer/authentication/types';
 import { capitalize } from '../../utils/helpers';
-import { useAppSelector, useAppDispatch } from '../../utils/hooks';
+import { useAppSelector, useAppDispatch } from '../../App';
 import { navBarContext } from '../../containers/app/BaseContainer';
 
 type NavProps = {
