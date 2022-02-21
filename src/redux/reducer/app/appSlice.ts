@@ -42,6 +42,14 @@ export const AppSlice = createSlice({
             state.creatingEventDone = false
         });
         builder.addCase(createNewEvent.fulfilled, (state, {payload}) => {
+            let newEventDate = payload.event_date
+            const hasCachedRecord = state.eventCache.hasOwnProperty(newEventDate)
+            if (hasCachedRecord) {
+                state.eventCache = {...state.eventCache, [newEventDate]:[...state.eventCache[newEventDate], payload]}
+            } else {
+                state.eventCache = {...state.eventCache, [newEventDate]:[payload]}
+            }
+            state.event = [...state.event, payload]
             state.creatingEventDone = true
         });
         builder.addCase(updateCreateEventStatus, (state, {payload}) => {
