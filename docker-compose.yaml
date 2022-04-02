@@ -1,8 +1,0 @@
-services:
-  frontend:
-    build: ./
-    container_name: eventfrontend
-    ports:
-      - '3000:3000'    
-    stdin_open: true
-    tty: true
