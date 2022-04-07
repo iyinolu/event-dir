@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: 14.x
       - run: npm install
-      - run: build --if-present
+      - run: craco build --if-present
       - name: Deploy to Heroku
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
