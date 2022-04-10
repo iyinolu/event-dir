@@ -5,14 +5,13 @@ import { EventCategory } from './reducer/app/types';
 import jwt_decode from 'jwt-decode';
 import axios from 'axios';
 import { Event, TokenClaim, UserInfo, UserTokenData, EventPayload, FetchEventPayload, FetchEventReturnData } from './types'
-import { store } from './store';
-import { config } from 'process';
 
+const BASE_URL = "https://eventdirbackend.herokuapp.com"
 
 export const login = createAsyncThunk<UserInfo, LoginPayLoad>(
     'user/login',
     async (loginBody: LoginPayLoad) => {
-        const response = await axios.post("http://127.0.0.1:8000/api/token/", loginBody)
+        const response = await axios.post(`${BASE_URL}/api/token/`, loginBody)
         const tokenClaim:TokenClaim = jwt_decode(response.data.access)
         const userInfo:UserTokenData = tokenClaim.user
         const data:UserInfo = {...response.data, ...userInfo }
@@ -37,7 +36,7 @@ export const fetchEvents = createAsyncThunk<
         if (eventCache.hasOwnProperty(parsedDate)) {
             data = eventCache[parsedDate]
         } else {
-            const response = await axios.get(`http://127.0.0.1:8000/api/events?eventDate=${date.date.toISOString().split("T")[0]}`)
+            const response = await axios.get(`${BASE_URL}/api/events?eventDate=${date.date.toISOString().split("T")[0]}`)
             data = response.data
         }
         
@@ -48,7 +47,7 @@ export const fetchEvents = createAsyncThunk<
 export const fetchEventsCategories = createAsyncThunk<EventCategory[]>(
     'events/getCategory',
     async () => {
-        const response = await axios.get("http://127.0.0.1:8000/api/category/")
+        const response = await axios.get(`${BASE_URL}/api/category/`)
         const data:EventCategory[] = response.data
         return data
     }
@@ -57,7 +56,7 @@ export const fetchEventsCategories = createAsyncThunk<EventCategory[]>(
 export const createNewEvent = createAsyncThunk<Event, EventPayload>(
     'event/create',
     async (data: EventPayload) => {
-        const response = await axios.post("http://127.0.0.1:8000/api/events/", JSON.stringify(data), {headers: {
+        const response = await axios.post(`${BASE_URL}/api/events/`, JSON.stringify(data), {headers: {
             "Content-Type": "application/json"
         }})
         const EventData:Event = response.data
