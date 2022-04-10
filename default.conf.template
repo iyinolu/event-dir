@@ -1,7 +1,7 @@
 server {
   listen       $PORT;
   listen  [::]:$PORT;
-  server_name  localhost;
+  server_name  https://eventdirbackend.herokuapp.com;
   location / {
     root   /usr/share/nginx/html;
     index  index.html index.htm;
