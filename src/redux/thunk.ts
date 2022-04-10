@@ -10,7 +10,7 @@ import { Event, TokenClaim, UserInfo, UserTokenData, EventPayload, FetchEventPay
 export const login = createAsyncThunk<UserInfo, LoginPayLoad>(
     'user/login',
     async (loginBody: LoginPayLoad) => {
-        const response = await axios.post(`/api/token/`, loginBody)
+        const response = await axios.post(`https://eventdirbackend.herokuapp.com/api/token/`, loginBody)
         const tokenClaim:TokenClaim = jwt_decode(response.data.access)
         const userInfo:UserTokenData = tokenClaim.user
         const data:UserInfo = {...response.data, ...userInfo }
