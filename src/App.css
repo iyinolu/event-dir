@@ -38,34 +38,36 @@
 }
 
 #root {
-  overflow: hidden auto;
   max-height: 100vh;
   min-height: 100vh;
   height: 100vh;
 }
 
+body {
+  background: black;
+}
+
 ::-webkit-scrollbar {
-  width: 6px
+  width: 6px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: transparent; 
+  background: transparent;
   margin: 30px;
-
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #0f0f0f; 
+  background: #0f0f0f;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #242424; 
+  background: #242424;
 }
-::-webkit-scrollbar-thumb{
-  border-radius: 10px
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
 }
 
 ::placeholder {

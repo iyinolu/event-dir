@@ -1,9 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { createTheme } from '@material-ui/core/styles';
-import { MuiPickersOverrides } from '@material-ui/pickers/typings/overrides';
+import { createTheme } from "@material-ui/core/styles";
+import { MuiPickersOverrides } from "@material-ui/pickers/typings/overrides";
 
-
-type overridesNameToClassKey = {  
+type overridesNameToClassKey = {
   [P in keyof MuiPickersOverrides]: keyof MuiPickersOverrides[P];
 };
 
@@ -16,31 +14,35 @@ type CustomType = {
     container: {
       width?: string;
     };
-  }; 
+  };
+  MuiPickersStaticWrapper: {
+    staticWrapperRoot: {
+      minWidth?: string;
+      width?: string;
+    };
+  };
 };
 
-declare module '@material-ui/core/styles/overrides' {
+declare module "@material-ui/core/styles/overrides" {
   interface ComponentNameToClassKey extends overridesNameToClassKey {}
   export interface ComponentNameToClassKey extends CustomType {}
 }
 
-
-// A custom theme for this app
 const theme = createTheme({
   props: {
     MuiButtonBase: {
       disableRipple: true,
-    }
+    },
   },
   palette: {
     primary: {
-      main: '#556cd6',
+      main: "#556cd6",
     },
     secondary: {
-      main: '#19857b',
+      main: "#19857b",
     },
     error: {
-      main: '#19857b',
+      main: "#19857b",
     },
   },
   overrides: {
@@ -54,60 +56,66 @@ const theme = createTheme({
         paddingTop: "12px",
       },
       container: {
-        width: "400px",
+        // width: "400px",
         background: "black",
-      }
+      },
     },
     MuiToolbar: {
       root: {
         backgroundColor: "#0f0f0f !important",
         marginBottom: "17px",
         borderRadius: "13px",
-        color: "white"
-      }
+        color: "white",
+      },
     },
     MuiPickersCalendarHeader: {
       dayLabel: {
-        color: "rgb(164 164 164 / 60%)"
+        color: "rgb(164 164 164 / 60%)",
       },
       iconButton: {
         backgroundColor: "#0f0f0f",
-        color: "white"
+        color: "white",
       },
       transitionContainer: {
         "& .MuiTypography-root": {
           fontWeight: "700",
-          color: "#8a8a8a"
-        }
-      }
+          color: "#8a8a8a",
+        },
+      },
     },
     MuiTypography: {
       colorInherit: {
-        color: "white"
-      }
+        color: "white",
+      },
     },
     MuiPickersDay: {
       daySelected: {
         backgroundColor: "#9acd32",
-        color: 'black',
+        color: "black",
         "& .MuiTypography-root": {
           color: "black",
-          fontWeight: "700"
+          fontWeight: "700",
         },
         "&:hover": {
           backgroundColor: "#9acd32",
-          color: 'black',
-        }
-      }
+          color: "black",
+        },
+      },
     },
     MuiPickersToolbarButton: {
       toolbarBtn: {
         "& h6": {
-          color: "#9acd32 !important"
-        }
-      }
+          color: "#9acd32 !important",
+        },
+      },
     },
-  }
+    MuiPickersStaticWrapper: {
+      staticWrapperRoot: {
+        minWidth: "unset",
+        width: "unset",
+      },
+    },
+  },
 });
 
 export default theme;
