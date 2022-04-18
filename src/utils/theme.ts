@@ -15,6 +15,12 @@ type CustomType = {
       width?: string;
     };
   };
+  MuiPickersStaticWrapper: {
+    staticWrapperRoot: {
+      minWidth?: string;
+      width?: string;
+    };
+  };
 };
 
 declare module "@material-ui/core/styles/overrides" {
@@ -50,7 +56,7 @@ const theme = createTheme({
         paddingTop: "12px",
       },
       container: {
-        width: "400px",
+        // width: "400px",
         background: "black",
       },
     },
@@ -101,6 +107,12 @@ const theme = createTheme({
         "& h6": {
           color: "#9acd32 !important",
         },
+      },
+    },
+    MuiPickersStaticWrapper: {
+      staticWrapperRoot: {
+        minWidth: "unset",
+        width: "unset",
       },
     },
   },

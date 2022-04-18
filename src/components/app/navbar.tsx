@@ -16,7 +16,7 @@ export default function NavigationBar({ userState }: NavProps) {
 
   return (
     <header
-      className="py-4 px-4 md:px-10 flex flex-row items-center justify-between w-screen"
+      className="py-4 px-4 md:px-10 flex flex-row items-center justify-between w-screen fixed z-[1000]"
       style={{ background: "rgb(15 15 15)" }}
     >
       <div className="flex flex-row items-center">
