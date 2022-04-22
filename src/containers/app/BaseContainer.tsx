@@ -70,7 +70,7 @@ export default function BasePage() {
   React.useEffect(() => {
     let todaysDate: FetchEventPayload = { date: new Date() };
     dispatch(fetchEvents(todaysDate));
-  }, []);
+  }, [dispatch]);
 
   return (
     <div
