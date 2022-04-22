@@ -1,8 +1,0 @@
-{
-    "/api/**": {
-        "target": "https://thanos.sabiroad.net",
-        "secure": false,
-        "logLevel": "debug",
-        "changeOrigin": true
-    }
-}

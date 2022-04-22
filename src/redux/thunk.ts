@@ -41,7 +41,7 @@ export const fetchEvents = createAsyncThunk<
     data = eventCache[parsedDate];
   } else {
     const response = await axios.get(
-      `/backend/api/events?eventDate=${date.date.toISOString().split("T")[0]}`
+      `/api/events?eventDate=${date.date.toISOString().split("T")[0]}`
     );
     data = response.data;
   }
@@ -52,7 +52,7 @@ export const fetchEvents = createAsyncThunk<
 export const fetchEventsCategories = createAsyncThunk<EventCategory[]>(
   "events/getCategory",
   async () => {
-    const response = await axios.get(`/backend/api/category/`);
+    const response = await axios.get(`/api/category/`);
     const data: EventCategory[] = response.data;
     return data;
   }
@@ -61,15 +61,11 @@ export const fetchEventsCategories = createAsyncThunk<EventCategory[]>(
 export const createNewEvent = createAsyncThunk<Event, EventPayload>(
   "event/create",
   async (data: EventPayload) => {
-    const response = await axios.post(
-      `/backend/api/events/`,
-      JSON.stringify(data),
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await axios.post(`/api/events/`, JSON.stringify(data), {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     const EventData: Event = response.data;
     return EventData;
   }

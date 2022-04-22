@@ -16,7 +16,7 @@
     "/**": "index.html"
   },
   "proxies": {
-    "/backend/": {
+    "/": {
       "origin": "${API_URL}"
     }
   }
