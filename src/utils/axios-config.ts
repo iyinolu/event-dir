@@ -5,7 +5,6 @@ import { store } from "../redux/store";
 import { refreshTokValid } from "./helpers";
 import { logout } from "../redux/store";
 import { ReloadAccessToken } from "../redux/reducer/authentication/authSlice";
-import { BASE_ENDPOINT } from "./constants";
 
 export default function interceptor(axios: AxiosStatic) {
   axios.interceptors.request.use(
@@ -51,7 +50,7 @@ async function refreshAccessToken(token: string) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ refresh: token }),
   };
-  const response = await fetch(BASE_ENDPOINT, requestOptions);
+  const response = await fetch(`/token/refresh/`, requestOptions);
   if (!response.ok) {
     const message = `An error has occured: ${response.status}`;
     return;
