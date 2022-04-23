@@ -3,6 +3,7 @@ server {
   listen  [::]:$PORT;
   server_name  https://eventsdirfrontend.herokuapp.com;
   location / {
+    root   /usr/share/nginx/html;
     index  index.html index.html;
   }
 }
