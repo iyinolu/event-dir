@@ -4,9 +4,6 @@ server {
   server_name  https://eventsdirfrontend.herokuapp.com;
   location / {
     root   /usr/share/nginx/html;
-    index  index.html index.html;
-  }
-  location /api {
-    proxy_pass https://eventdirbackend.herokuapp.com/api
+    index  index.html index.htm;
   }
 }
