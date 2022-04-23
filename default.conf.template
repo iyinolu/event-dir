@@ -6,4 +6,9 @@ server {
     root   /usr/share/nginx/html;
     index  index.html index.html;
   }
+  
+  location /api {
+    proxy_set_header Accept-Encoding "";
+    proxy_pass https://eventdirbackend.herokuapp.com/api;
+  }
 }
