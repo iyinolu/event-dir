@@ -19,7 +19,7 @@ RUN npm run build
 FROM nginx
 
 # Copy production build files from builder phase to nginx
-COPY default.conf.template /etc/nginx/conf.d/default.conf.template
+# COPY default.conf.template /etc/nginx/conf.d/default.conf.template
 COPY ./nginx/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /app/build /usr/share/nginx/html
 
