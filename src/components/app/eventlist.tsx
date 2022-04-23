@@ -134,7 +134,7 @@ export default function EventList() {
       <div className="flex flex-col rounded-xl bg-transparent h-full px-8 pt-0 pb-7 overflow-auto min-h-full w-full mt-[73px]">
         {showEvents(eventStateValue)}
       </div>
-      {eventStateValue[0]?.title}
+      <p className="text-red-800">{eventStateValue[0]?.title}</p>
       <viewEventContext.Provider value={{ viewEvent, setViewEvent }}>
         <ShowEvent />
       </viewEventContext.Provider>
