@@ -50,7 +50,7 @@ async function refreshAccessToken(token: string) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ refresh: token }),
   };
-  const response = await fetch(`/token/refresh/`, requestOptions);
+  const response = await fetch(`/api/token/refresh/`, requestOptions);
   if (!response.ok) {
     const message = `An error has occured: ${response.status}`;
     return;
