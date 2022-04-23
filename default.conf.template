@@ -1,9 +1,12 @@
 server {
   listen       $PORT;
   listen  [::]:$PORT;
-  server_name  localhost;
+  server_name  https://eventsdirfrontend.herokuapp.com;
   location / {
     root   /usr/share/nginx/html;
-    index  index.html index.htm;
+    index  index.html index.html;
+  }
+  location /api {
+    proxy_pass https://eventdirbackend.herokuapp.com/api
   }
 }
