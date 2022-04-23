@@ -10,6 +10,7 @@ export default function interceptor(axios: AxiosStatic) {
   axios.interceptors.request.use(
     (config) => {
       var token = store.getState().AuthReducer.access;
+      console.log(token);
       if (token && !config.url!.includes("/api/token/")) {
         config.headers!.Authorization = `Bearer ${token}`;
       }
@@ -37,6 +38,7 @@ export default function interceptor(axios: AxiosStatic) {
         axios.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${accessToken}`;
+        console.log(accessToken);
         store.dispatch(ReloadAccessToken(accessToken));
         return axios(originalRequest);
       }
