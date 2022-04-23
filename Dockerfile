@@ -15,6 +15,8 @@ COPY . .
 # Build the project for production
 RUN npm run build 
 
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+
 # Run Stage Start
 FROM nginx
 
