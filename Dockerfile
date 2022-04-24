@@ -18,7 +18,7 @@ RUN npm run build
 ADD ./.profile.d /app/.profile.d
 
 # Run Stage Start
-FROM nginx
+FROM nginx:1.21.6-alpine
 
 RUN apk add --no-cache --update bash openssh openssl curl iproute2 python3
 RUN ln -sf python3 /usr/bin/python
