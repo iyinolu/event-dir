@@ -22,7 +22,7 @@ RUN apk add --no-cache --update bash openssh openssl curl iproute2 python3
 RUN ln -sf python3 /usr/bin/python
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
-ADD ./.profile.d /app/.profile.d
+RUN mkdir /app/.profile.d
 ADD ./heroku-exec.sh /app/.profile.d/
 
 # Copy production build files from builder phase to nginx
