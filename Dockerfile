@@ -15,8 +15,6 @@ COPY . .
 # Build the project for production
 RUN npm run build 
 
-ADD ./.profile.d /app/.profile.d
-
 # Run Stage Start
 FROM nginx:1.21.6-alpine
 
