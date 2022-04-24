@@ -15,12 +15,17 @@ COPY . .
 # Build the project for production
 RUN npm run build 
 
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
-
 ADD ./.profile.d /app/.profile.d
 
 # Run Stage Start
 FROM nginx
+
+RUN apk add --no-cache --update bash openssh openssl curl iproute2 python3
+RUN ln -sf python3 /usr/bin/python
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+
+RUN mkdir /app/.profile.d
+ADD ./heroku-exec.sh /app/.profile.d/
 
 # Copy production build files from builder phase to nginx
 COPY default.conf.template /etc/nginx/conf.d/default.conf.template

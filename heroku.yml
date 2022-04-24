@@ -1,0 +1,5 @@
+build:
+  docker:
+    app: Dockerfile
+run:
+  app: "/app/.profile.d/heroku-exec.sh && /app/bin/my_agent start"
