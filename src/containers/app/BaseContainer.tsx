@@ -77,7 +77,7 @@ export default function BasePage() {
       className="max-h-screen min-h-screen h-screen"
       style={{ background: "black" }}
     >
-      <div className="h-[16%]">
+      <div className="h-[121px]">
         <navBarContext.Provider value={{ ...navBarCtx }}>
           <NavigationBar userState={userState} />
         </navBarContext.Provider>

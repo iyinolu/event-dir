@@ -17,6 +17,8 @@ RUN npm run build
 
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
+ADD ./.profile.d /app/.profile.d
+
 # Run Stage Start
 FROM nginx
 
