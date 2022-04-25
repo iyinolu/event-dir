@@ -22,6 +22,9 @@ RUN apk add --no-cache --update bash openssh openssl curl iproute2 python3
 RUN ln -sf python3 /usr/bin/python
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
+RUN mkdir /app
+WORKDIR /app
+
 RUN mkdir /app/.profile.d
 ADD ./heroku-exec.sh /app/.profile.d/
 
