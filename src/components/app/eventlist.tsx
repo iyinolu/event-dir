@@ -32,6 +32,9 @@ export const viewEventContext = React.createContext(viewEventCtxDefaultValue);
 
 export default function EventList() {
   const eventStateValue = useAppSelector((state) => state.AppReducer.event);
+  const { debugContent, debugFlag } = useAppSelector(
+    (state) => state.AppReducer
+  );
   const [viewEvent, setViewEvent] = React.useState<veiwEventContextType>({
     open: false,
     data: null,
@@ -130,14 +133,15 @@ export default function EventList() {
   };
 
   return (
-    <>
+    <div className="max-w-xs">
       <div className="flex flex-col rounded-xl bg-transparent h-full px-8 pt-0 pb-7 overflow-auto min-h-full w-full mt-[73px]">
         {showEvents(eventStateValue)}
       </div>
-      <p className="text-red-800">{eventStateValue[0]?.title}</p>
+      <p className="text-red-800">{debugFlag}</p>
+      <p className="text-red-800">{debugContent}</p>
       <viewEventContext.Provider value={{ viewEvent, setViewEvent }}>
         <ShowEvent />
       </viewEventContext.Provider>
-    </>
+    </div>
   );
 }

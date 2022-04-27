@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { fetchEvents, fetchEventsCategories, createNewEvent } from '../../thunk'
 import { initialAppState } from './types'
 import { updateCreateEventStatus } from '../../actions/app'
@@ -9,6 +9,13 @@ const initialState: initialAppState = {
     eventCache: {},
     eventCategories: [],
     creatingEventDone: false,
+    debugFlag: null,
+    debugContent: ""
+}
+
+type Debug = {
+    debugFlag: string | boolean;
+    debugContent: string;
 }
 
 export const AppSlice = createSlice({
@@ -20,6 +27,10 @@ export const AppSlice = createSlice({
             state.eventCache = {}
             state.eventCategories = []
             state.creatingEventDone = false
+        },
+        UpdateDebug: (state, action: PayloadAction<Debug>) => {
+            state.debugFlag = action.payload.debugFlag
+            state.debugContent = action.payload.debugContent
         }
     },
     extraReducers: (builder) => {
@@ -61,5 +72,5 @@ export const AppSlice = createSlice({
 
     }
 })
-export const { ClearAppState } = AppSlice.actions
+export const { ClearAppState, UpdateDebug } = AppSlice.actions
 export default AppSlice.reducer
