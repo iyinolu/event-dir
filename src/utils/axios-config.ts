@@ -11,10 +11,12 @@ export default function interceptor(axios: AxiosStatic) {
   axios.interceptors.request.use(
     (config) => {
       var token = store.getState().AuthReducer.access;
-      store.dispatch(UpdateDebug({
-        debugFlag: token && !config.url!.includes("/api/token/"),
-        debugContent: JSON.stringify(config),
-      }))      
+      store.dispatch(
+        UpdateDebug({
+          debugFlag: token && !config.url!.includes("/api/token/"),
+          debugContent: JSON.stringify(config),
+        })
+      );
 
       if (token && !config.url!.includes("/api/token/")) {
         config.headers!.Authorization = `Bearer ${token}`;
