@@ -41,7 +41,7 @@ export const fetchEvents = createAsyncThunk<
     data = eventCache[parsedDate];
   } else {
     const response = await axios.get(
-      `/api/events?eventDate=${date.date.toISOString().split("T")[0]}`
+      `/api/events?event_date=${date.date.toISOString().split("T")[0]}`
     );
     data = response.data;
   }
