@@ -24,32 +24,24 @@ export default function Login() {
 
   return (
     <div className="App">
-      <div
-        className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
-        style={{ backgroundColor: "black" }}
-      >
+      <div className="min-h-screen flex items-center justify-center py-12 px-[38px] lg:px-8 bg-black">
         <div className="max-w-md w-full space-y-8">
-          <div>
-            {/* <img
-            className="mx-auto h-12 w-auto"
-            src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-            alt="Workflow"
-          /> */}
-            <h2
-              className="mt-6 text-center text-3xl font-bold"
-              style={{ color: "#cac6c6" }}
-            >
-              Sign in to your account
-            </h2>
+          <div className="flex items-center justify-center flex-col">
+            <img
+              className="w-[56%]"
+              style={{ height: "50%", marginBottom: "30px" }}
+              src="/media/illustrations/login_page_illustration.svg"
+              alt="No Event"
+            />
+            <h3 className="mt-6 text-center text-[23px] font-[500] text-[#cac6c6]">
+              Have an account?{" "}
+              <span className="font-[700] text-[#757575]">Sign in</span>
+            </h3>
             <p className="mt-2 text-center text-sm" style={{ color: "grey" }}>
-              Or{" "}
-              <a
-                href="/"
-                className="font-medium hover:text-indigo-500"
-                style={{ color: "grey" }}
-              >
-                start your 14-day free trial
-              </a>
+              or{" "}
+              <span className="text-[#f4f4f4] cursor-pointer underline">
+                Sign up
+              </span>
             </p>
           </div>
           <form
@@ -123,15 +115,7 @@ export default function Login() {
                 </label>
               </div>
 
-              <div className="text-sm">
-                <a
-                  href="/"
-                  className="font-medium hover:text-indigo-500"
-                  style={{ color: "grey" }}
-                >
-                  Forgot your password?
-                </a>
-              </div>
+              <div className="text-sm"></div>
             </div>
 
             <div>

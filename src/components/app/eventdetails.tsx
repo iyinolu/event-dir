@@ -10,11 +10,12 @@ import { Event } from "../../redux/reducer/app/types";
 const useStyles = makeStyles({
   paperRoot: {
     minHeight: "400px",
-    minWidth: "60%",
     display: "flex",
     background: "#0f0e0e",
     flexDirection: "column",
     alignItems: "center",
+    minWidth: "86px",
+    overflow: "hidden",
   },
   container: {
     backdropFilter: "blur(5px)",

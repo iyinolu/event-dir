@@ -78,7 +78,7 @@ export default function EventList() {
     var eventList = events.map((event, idx) => {
       return (
         <div
-          className="flex flex-col rounded-2xl h-auto w-full bg-white mb-6 px-5 py-4 border-gray-200"
+          className="flex flex-col rounded-2xl h-auto w-full bg-white mb-6 px-5 py-4 border-gray-200 min-w-[311px]"
           style={{
             background: "rgb(0 0 0)",
             borderColor: "rgb(34 34 34)",

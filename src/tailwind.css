@@ -799,6 +799,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   min-width: 100%;
 }
 
+.min-w-\[311px\] {
+  min-width: 311px;
+}
+
 .max-w-xs {
   max-width: 20rem;
 }
@@ -817,6 +821,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .flex-grow-\[1\] {
   flex-grow: 1;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 .appearance-none {
@@ -967,6 +975,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(35 35 35 / var(--tw-bg-opacity));
 }
 
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+
 .py-\[40px\] {
   padding-top: 40px;
   padding-bottom: 40px;
@@ -1047,6 +1060,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: 35px;
 }
 
+.px-\[38px\] {
+  padding-left: 38px;
+  padding-right: 38px;
+}
+
 .pt-6 {
   padding-top: 1.5rem;
 }
@@ -1096,6 +1114,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   line-height: 2.25rem;
 }
 
+.text-\[23px\] {
+  font-size: 23px;
+}
+
 .font-extrabold {
   font-weight: 800;
 }
@@ -1114,6 +1136,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .font-medium {
   font-weight: 500;
+}
+
+.font-\[500\] {
+  font-weight: 500;
+}
+
+.font-\[700\] {
+  font-weight: 700;
 }
 
 .capitalize {
@@ -1163,6 +1193,26 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-\[\#919191\] {
   --tw-text-opacity: 1;
   color: rgb(145 145 145 / var(--tw-text-opacity));
+}
+
+.text-\[\#f4f4f4\] {
+  --tw-text-opacity: 1;
+  color: rgb(244 244 244 / var(--tw-text-opacity));
+}
+
+.text-\[\#cac6c6\] {
+  --tw-text-opacity: 1;
+  color: rgb(202 198 198 / var(--tw-text-opacity));
+}
+
+.text-\[\#757575\] {
+  --tw-text-opacity: 1;
+  color: rgb(117 117 117 / var(--tw-text-opacity));
+}
+
+.underline {
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
 }
 
 .placeholder-gray-200::-webkit-input-placeholder {
