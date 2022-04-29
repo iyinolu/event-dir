@@ -545,6 +545,22 @@ Ensure the default browser behavior of the `hidden` attribute.
   left: 0px;
 }
 
+.top-4 {
+  top: 1rem;
+}
+
+.right-4 {
+  right: 1rem;
+}
+
+.top-3 {
+  top: 0.75rem;
+}
+
+.right-3 {
+  right: 0.75rem;
+}
+
 .z-\[1000\] {
   z-index: 1000;
 }
@@ -647,6 +663,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-left: 0.5rem;
 }
 
+.mt-\[20px\] {
+  margin-top: 20px;
+}
+
 .box-border {
   box-sizing: border-box;
 }
@@ -717,6 +737,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .h-4\/5 {
   height: 80%;
+}
+
+.h-\[264px\] {
+  height: 264px;
 }
 
 .max-h-screen {
@@ -791,6 +815,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   flex-grow: 1;
 }
 
+.flex-grow-\[1\] {
+  flex-grow: 1;
+}
+
 .appearance-none {
   -webkit-appearance: none;
           appearance: none;
@@ -802,6 +830,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .flex-col {
   flex-direction: column;
+}
+
+.items-start {
+  align-items: flex-start;
 }
 
 .items-center {
@@ -930,6 +962,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: transparent;
 }
 
+.bg-\[\#232323\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(35 35 35 / var(--tw-bg-opacity));
+}
+
 .py-\[40px\] {
   padding-top: 40px;
   padding-bottom: 40px;
@@ -998,6 +1035,16 @@ Ensure the default browser behavior of the `hidden` attribute.
 .px-20 {
   padding-left: 5rem;
   padding-right: 5rem;
+}
+
+.py-\[20px\] {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.px-\[35px\] {
+  padding-left: 35px;
+  padding-right: 35px;
 }
 
 .pt-6 {
@@ -1111,6 +1158,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-black {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.text-\[\#919191\] {
+  --tw-text-opacity: 1;
+  color: rgb(145 145 145 / var(--tw-text-opacity));
 }
 
 .placeholder-gray-200::-webkit-input-placeholder {

@@ -133,12 +133,10 @@ export default function EventList() {
   };
 
   return (
-    <div className="max-w-xs">
+    <div>
       <div className="flex flex-col rounded-xl bg-transparent h-full px-8 pt-0 pb-7 overflow-auto min-h-full w-full mt-[73px]">
         {showEvents(eventStateValue)}
       </div>
-      <p className="text-red-800">{debugFlag ? "True" : "False"}</p>
-      <p className="text-red-800">{debugContent}</p>
       <viewEventContext.Provider value={{ viewEvent, setViewEvent }}>
         <ShowEvent />
       </viewEventContext.Provider>

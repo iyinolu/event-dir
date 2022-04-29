@@ -13,11 +13,6 @@ const initialState: initialAppState = {
     debugContent: ""
 }
 
-type Debug = {
-    debugFlag: string | boolean;
-    debugContent: string;
-}
-
 export const AppSlice = createSlice({
     name: "app",
     initialState,
@@ -27,11 +22,7 @@ export const AppSlice = createSlice({
             state.eventCache = {}
             state.eventCategories = []
             state.creatingEventDone = false
-        },
-        UpdateDebug: (state, action: PayloadAction<Debug>) => {
-            state.debugFlag = action.payload.debugFlag
-            state.debugContent = action.payload.debugContent
-        }
+        },        
     },
     extraReducers: (builder) => {
         builder.addCase(fetchEvents.pending, (state) => {
@@ -72,5 +63,5 @@ export const AppSlice = createSlice({
 
     }
 })
-export const { ClearAppState, UpdateDebug } = AppSlice.actions
+export const { ClearAppState } = AppSlice.actions
 export default AppSlice.reducer

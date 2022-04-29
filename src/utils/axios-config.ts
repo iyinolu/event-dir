@@ -5,19 +5,11 @@ import { store } from "../redux/store";
 import { refreshTokValid } from "./helpers";
 import { logout } from "../redux/store";
 import { ReloadAccessToken } from "../redux/reducer/authentication/authSlice";
-import { UpdateDebug } from "../redux/reducer/app/appSlice";
 
 export default function interceptor(axios: AxiosStatic) {
   axios.interceptors.request.use(
     (config) => {
       var token = store.getState().AuthReducer.access;
-      store.dispatch(
-        UpdateDebug({
-          debugFlag: token && !config.url!.includes("/api/token/"),
-          debugContent: JSON.stringify(config),
-        })
-      );
-
       if (token && !config.url!.includes("/api/token/")) {
         config.headers!.Authorization = `Bearer ${token}`;
       }
@@ -45,7 +37,7 @@ export default function interceptor(axios: AxiosStatic) {
         axios.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${accessToken}`;
-        console.log(accessToken);
+
         store.dispatch(ReloadAccessToken(accessToken));
         return axios(originalRequest);
       }
@@ -65,6 +57,5 @@ async function refreshAccessToken(token: string) {
     return;
   }
   const accessToken = await response.json();
-
   return accessToken.access;
 }
