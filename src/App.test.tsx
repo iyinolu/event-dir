@@ -10,6 +10,6 @@ test("renders login form", () => {
       <App />
     </Provider>
   );
-  const loginTitle = screen.getByText(/Sign in to your account/i);
+  const loginTitle = screen.getByText(/Have an account?/i);
   expect(loginTitle).toBeInTheDocument();
 });
