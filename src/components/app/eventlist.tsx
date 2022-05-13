@@ -56,7 +56,7 @@ export default function EventList() {
             className="items-center"
           >
             <img
-              className="w-[56%]"
+              className="w-[56%] md:w-[40%]"
               style={{ height: "50%", marginBottom: "30px" }}
               src="/media/illustrations/noevent_placeholder.svg"
               alt="No Event"
@@ -67,6 +67,7 @@ export default function EventList() {
                 textAlign: "center",
                 padding: "0px 60px",
               }}
+              className="md:w-[450px]"
             >
               No Events for the selected day. Double-click on a day to add an
               event.
@@ -78,7 +79,7 @@ export default function EventList() {
     var eventList = events.map((event, idx) => {
       return (
         <div
-          className="flex flex-col rounded-2xl h-auto w-full bg-white mb-6 px-5 py-4 border-gray-200 min-w-[311px]"
+          className="flex flex-col rounded-2xl h-auto w-full bg-white mb-6 px-5 py-4 border-gray-200 min-w-[311px] md:w-auto"
           style={{
             background: "rgb(0 0 0)",
             borderColor: "rgb(34 34 34)",
@@ -134,7 +135,7 @@ export default function EventList() {
 
   return (
     <div>
-      <div className="flex flex-col rounded-xl bg-transparent h-full px-8 pt-0 pb-7 overflow-auto min-h-full w-full mt-[73px]">
+      <div className="flex flex-col rounded-xl bg-transparent h-full px-8 pt-0 pb-7 overflow-auto min-h-full w-full mt-[73px] md:mt-0 md:w-auto">
         {showEvents(eventStateValue)}
       </div>
       <viewEventContext.Provider value={{ viewEvent, setViewEvent }}>

@@ -731,6 +731,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 80%;
 }
 
+.h-\[19px\] {
+  height: 19px;
+}
+
 .max-h-screen {
   max-height: 100vh;
 }
@@ -779,6 +783,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 1rem;
 }
 
+.w-\[19px\] {
+  width: 19px;
+}
+
 .min-w-\[311px\] {
   min-width: 311px;
 }
@@ -789,6 +797,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .max-w-md {
   max-width: 28rem;
+}
+
+.max-w-\[1200px\] {
+  max-width: 1200px;
 }
 
 .flex-none {
@@ -864,6 +876,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-space-y-reverse: 0;
   margin-top: calc(-1px * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(-1px * var(--tw-space-y-reverse));
+}
+
+.self-start {
+  align-self: flex-start;
+}
+
+.self-center {
+  align-self: center;
 }
 
 .overflow-auto {
@@ -1267,12 +1287,36 @@ Ensure the default browser behavior of the `hidden` attribute.
     margin-left: 1.25rem;
   }
 
+  .md\:mt-0 {
+    margin-top: 0px;
+  }
+
   .md\:flex {
     display: flex;
   }
 
   .md\:h-\[72px\] {
     height: 72px;
+  }
+
+  .md\:w-auto {
+    width: auto;
+  }
+
+  .md\:w-\[40\%\] {
+    width: 40%;
+  }
+
+  .md\:w-\[450px\] {
+    width: 450px;
+  }
+
+  .md\:flex-1 {
+    flex: 1 1 0%;
+  }
+
+  .md\:flex-\[2\] {
+    flex: 2;
   }
 
   .md\:flex-row {
@@ -1283,9 +1327,23 @@ Ensure the default browser behavior of the `hidden` attribute.
     justify-content: center;
   }
 
+  .md\:self-start {
+    align-self: flex-start;
+  }
+
   .md\:px-10 {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
+  }
+
+  .md\:py-\[35px\] {
+    padding-top: 35px;
+    padding-bottom: 35px;
+  }
+
+  .md\:px-\[86px\] {
+    padding-left: 86px;
+    padding-right: 86px;
   }
 }
 

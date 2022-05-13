@@ -47,10 +47,13 @@ export default function ProfileSideBar() {
     )
 }
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
     root: {
-        width: "30%",
-        backgroundColor: "#f7f7f7"
+        width: "100%",
+        backgroundColor: "#f7f7f7",
+        '@media (min-width: 780px)': {
+            width: "425px",
+        } 
     },
     frame: {
         padding: "10px",
@@ -78,4 +81,4 @@ const useStyles = makeStyles({
         borderRadius: "5px",
         marginBottom: "15px"
     }
-})
+}))

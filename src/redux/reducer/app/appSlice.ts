@@ -10,7 +10,8 @@ const initialState: initialAppState = {
     eventCategories: [],
     creatingEventDone: false,
     debugFlag: null,
-    debugContent: ""
+    debugContent: "",
+    fetchingEvent: false
 }
 
 export const AppSlice = createSlice({
@@ -26,9 +27,10 @@ export const AppSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(fetchEvents.pending, (state) => {
-            console.log(state)
+            state.fetchingEvent = true
         });
         builder.addCase(fetchEvents.fulfilled, (state, {payload}) => {
+            state.fetchingEvent = false
             const date = payload.dateQuery.toISOString().split("T")[0]
             const hasCachedRecord = state.eventCache.hasOwnProperty(date)
 

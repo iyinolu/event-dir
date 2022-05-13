@@ -58,6 +58,7 @@ export default function BasePage() {
     sideBarState: sideBarState,
     setSideBarState: setSideBarState,
   };
+  const eventStateValue = useAppSelector((state) => state.AppReducer.event);
   const navBarCtx = {
     sideBarCtx: _access_sidebar,
     username: userState.firstname,
@@ -91,8 +92,8 @@ export default function BasePage() {
       </div>
 
       <main id="dashboard">
-        <div className="flex items-center md:justify-center flex-col md:flex-row min-h-full">
-          <section>
+        <div className="flex items-center md:justify-center flex-col md:flex-row min-h-full my-0 mx-auto md:py-[35px] md:px-[86px] max-w-[1200px]">
+          <section className="md:flex-1 md:self-start">
             <ThemeProvider theme={theme}>
               <Calendar
                 callbackFn={(date: Date) =>
@@ -101,7 +102,7 @@ export default function BasePage() {
               />
             </ThemeProvider>
           </section>
-          <section>
+          <section className={`md:flex-[2] md:${eventStateValue.length > 0 ? "self-start" : "self-center"}`}>
             <div>
               <EventList />
             </div>
