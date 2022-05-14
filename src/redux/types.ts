@@ -41,5 +41,5 @@ export type FetchEventPayload = {
 
 export type FetchEventReturnData = {
     data: Event[],
-    dateQuery: Date
+    dateQuery: string
 }

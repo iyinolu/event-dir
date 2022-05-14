@@ -44,11 +44,22 @@ export const capitalize = (input: string) => {
   return format;
 };
 
-export const formatDate = (date: Date | undefined) => {
+export const renderDate = (date: Date | undefined) => {
   if (date) {
     let dateObj = new Date(date);
     let _dateObj = dateObj.toDateString().split(" ");
     var renderDateFormat = `${_dateObj[1]} ${_dateObj[2]}, ${_dateObj[3]}`;
+  } else {
+    return " ";
+  }
+  return renderDateFormat;
+};
+
+export const formatDate = (date: Date | undefined) => {
+  if (date) {
+    let dateObj = new Date(date);
+    let _dateObj = dateObj.toLocaleDateString().split("/");
+    var renderDateFormat = `${_dateObj[2]}-${_dateObj[1]}-${_dateObj[0]}`;
   } else {
     return " ";
   }

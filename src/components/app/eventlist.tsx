@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { Dispatch, SetStateAction } from "react";
 import {
-  ChevronRightIcon,
-  ChevronLeftIcon,
   ArrowNarrowRightIcon,
 } from "@heroicons/react/solid";
 import { toAbsoluteUrl } from "../../utils/helpers";
@@ -135,7 +133,7 @@ export default function EventList() {
 
   return (
     <div>
-      <div className="flex flex-col rounded-xl bg-transparent h-full px-8 pt-0 pb-7 overflow-auto min-h-full w-full mt-[73px] md:mt-0 md:w-auto">
+      <div className="flex flex-col rounded-xl bg-transparent h-[500px] px-8 pt-0 pb-7 overflow-auto min-h-full w-full mt-[73px] md:mt-0 md:w-auto">
         {showEvents(eventStateValue)}
       </div>
       <viewEventContext.Provider value={{ viewEvent, setViewEvent }}>

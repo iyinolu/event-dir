@@ -13,6 +13,7 @@ import {
   FetchEventPayload,
   FetchEventReturnData,
 } from "./types";
+import { formatDate } from "../utils/helpers";
 
 export const login = createAsyncThunk<UserInfo, LoginPayLoad>(
   "user/login",
@@ -34,19 +35,15 @@ export const fetchEvents = createAsyncThunk<
   }
 >("events/getEvents", async (date, thunkAPI) => {
   let data: Event[];
-  let parsedDate = date.date.toISOString().split("T")[0];
+  let parsedDate = formatDate(date.date);
   const eventCache = thunkAPI.getState().AppReducer.eventCache;
-
   if (eventCache.hasOwnProperty(parsedDate)) {
     data = eventCache[parsedDate];
   } else {
-    const response = await axios.get(
-      `/api/events?event_date=${date.date.toISOString().split("T")[0]}`
-    );
+    const response = await axios.get(`/api/events?event_date=${parsedDate}`);
     data = response.data;
   }
-
-  return { data: data, dateQuery: date.date };
+  return { data: data, dateQuery: parsedDate };
 });
 
 export const fetchEventsCategories = createAsyncThunk<EventCategory[]>(

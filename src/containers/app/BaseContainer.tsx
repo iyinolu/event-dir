@@ -93,7 +93,7 @@ export default function BasePage() {
 
       <main id="dashboard">
         <div className="flex items-center md:justify-center flex-col md:flex-row min-h-full my-0 mx-auto md:py-[35px] md:px-[86px] max-w-[1200px]">
-          <section className="md:flex-1 md:self-start">
+          <section className="md:flex-1 md:self-center">
             <ThemeProvider theme={theme}>
               <Calendar
                 callbackFn={(date: Date) =>
@@ -120,44 +120,3 @@ export default function BasePage() {
     </div>
   );
 }
-
-// {
-/* <div className="max-h-screen min-h-screen h-screen" style={{ background: "black"}}>
-            <div className="h-1/5">
-                <navBarContext.Provider value={{ ...navBarCtx  }}>
-                    <NavigationBar userState={userState}  />
-                </navBarContext.Provider>
-                <div className="px-20 mt-3 flex flex-row justify-between items-center" >
-                    <span/>
-                    <button 
-                        style={{ 
-                            fontSize:"11px", 
-                            fontWeight:"bold", 
-                            padding: "2px 9px", 
-                            background: "#9acd32", 
-                            borderColor: "yellowgreen"
-                        }} 
-                        onClick={() => setAddEventDialog({open: true, date: new Date()}) }
-                        className="font-sans flex items-center py-1 px-4 rounded-md border-2 border-grey-500"
-                    >
-                        Today's Event
-                    <PlusCircleIcon className="ml-4 h-5 w-5"/>
-                    </button>
-                </div>
-            </div>
-
-            <div className="h-4/5">
-                <div className="h-full min-h-full">
-                    <div className="grid row-span-4" style={{ height: "90%", minHeight: "90%"}}>
-                        <div style={{ maxWidth: "677px", minWidth: "579px" }} className="flex flex-col items-center flex-none col-start-1 col-end-7 box-border h-full min-h-full min-w-full">   
-                            <EventList/>
-                        </div>
-                        <div className="flex flex-col items-center justify-start col-start-7 col-end-13 box-border">
-                            <ThemeProvider theme={theme}> 
-                                <Calendar callbackFn={(date: Date) => setAddEventDialog({open: true, date: date})} />
-                            </ThemeProvider>
-                        </div>
-                    </div>
-                </div>
-            </div>  */
-// }
