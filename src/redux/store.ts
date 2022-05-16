@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { configureStore } from '@reduxjs/toolkit';
 import AuthReducer from './reducer/authentication/authSlice'
-import AppReducer from './reducer/app/appSlice';
+import AppReducer from './reducer/application/appSlice';
 import { combineReducers } from 'redux';
 import storage from 'redux-persist/lib/storage'
 import {
@@ -14,7 +13,7 @@ import {
     PURGE,
     REGISTER
 } from 'redux-persist'
-import { ClearAppState } from './reducer/app/appSlice';
+import { ClearAppState } from './reducer/application/appSlice';
 import { SignOutAction } from './reducer/authentication/authSlice';
 
 const rootReducer = combineReducers({AuthReducer, AppReducer})

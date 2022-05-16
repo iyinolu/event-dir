@@ -1,39 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { Dispatch, SetStateAction } from "react";
-import {
-  ArrowNarrowRightIcon,
-} from "@heroicons/react/solid";
+import React from "react";
+import { ArrowNarrowRightIcon } from "@heroicons/react/solid";
 import { toAbsoluteUrl } from "../../utils/helpers";
-import { Event } from "../../redux/reducer/app/types";
-import { useAppSelector, useAppDispatch } from "../../App";
+import { Event } from "../../redux/reducer/application/types";
 import { ShowEvent } from "./eventdetails";
+import { EventListProps, ViewEventState } from "../types";
 
-type Events = {
-  events: Event[];
-};
-
-type veiwEventContextType = {
-  open: boolean;
-  data: Event | null;
-};
-type viewEventContextValue = {
-  viewEvent: veiwEventContextType;
-  setViewEvent: Dispatch<SetStateAction<veiwEventContextType>>;
-};
-
-const viewEventCtxDefaultValue: viewEventContextValue = {
-  viewEvent: { open: false, data: null },
-  setViewEvent: () => {},
-};
-
-export const viewEventContext = React.createContext(viewEventCtxDefaultValue);
-
-export default function EventList() {
-  const eventStateValue = useAppSelector((state) => state.AppReducer.event);
-  const { debugContent, debugFlag } = useAppSelector(
-    (state) => state.AppReducer
-  );
-  const [viewEvent, setViewEvent] = React.useState<veiwEventContextType>({
+export default function EventList({ events }: EventListProps) {
+  const [viewEvent, setViewEvent] = React.useState<ViewEventState>({
     open: false,
     data: null,
   });
@@ -108,21 +82,15 @@ export default function EventList() {
             </span>
             <div
               onClick={() => setViewEvent({ open: true, data: event })}
-              className="flex flex-row items-center font-sans text-xs px-3 py-2 rounded-lg flex-none w-32"
+              className="flex flex-row items-center font-sans text-xs px-3 py-2 rounded-lg flex-none w-32 bg-transparent"
               style={{
-                background: "#9acd32",
-                color: "black",
                 padding: "6px ​10px",
                 cursor: "pointer",
+                border: "1px solid rgb(154, 205, 50)",
+                color: "rgb(154, 205, 50)",
               }}
             >
-              <span
-                style={{ color: "black" }}
-                className="font-semibold text-gray-600"
-              >
-                View details
-              </span>
-              <ArrowNarrowRightIcon className="ml-3 w-5" />
+              <ArrowNarrowRightIcon className="w-5 ml-auto" />
             </div>
           </div>
         </div>
@@ -134,11 +102,9 @@ export default function EventList() {
   return (
     <div>
       <div className="flex flex-col rounded-xl bg-transparent h-[500px] px-8 pt-0 pb-7 overflow-auto min-h-full w-full mt-[73px] md:mt-0 md:w-auto">
-        {showEvents(eventStateValue)}
+        {showEvents(events)}
       </div>
-      <viewEventContext.Provider value={{ viewEvent, setViewEvent }}>
-        <ShowEvent />
-      </viewEventContext.Provider>
+      <ShowEvent viewEvent={viewEvent} setViewEvent={setViewEvent} />
     </div>
   );
 }

@@ -1,68 +1,31 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { Dispatch, SetStateAction } from "react";
-import Calendar from "../../components/app/calendar";
+import React from "react";
+import Calendar from "../../components/application/calendar";
 import { PlusCircleIcon } from "@heroicons/react/solid";
-import EventList from "../../components/app/eventlist";
-import NavigationBar from "../../components/app/navbar";
-import ProfileSideBar from "../../components/app/profilesidebar";
-import SubNavigation from "../../components/app/subnavigation";
-
+import EventList from "../../components/application/eventlist";
+import NavigationBar from "../../components/application/navbar";
+import ProfileSideBar from "../../components/application/profilesidebar";
+import SubNavigation from "../../components/application/subnavigation";
 import { ThemeProvider } from "@material-ui/core";
 import theme from "../../utils/theme";
 import { fetchEvents } from "../../redux/thunk";
 import { useAppSelector, useAppDispatch } from "../../App";
-import { AuthState } from "../../redux/reducer/authentication/types";
-import AddEventDialog from "../../components/app/addevents";
+import AddEventDialog from "../../components/application/addevents";
 import { FetchEventPayload } from "../../redux/types";
 
-type sidebarContextType = {
+type SideBarState = {
   open: boolean;
-  data: AuthState | null;
+  data: object | null;
 };
-type SideBarContextValue = {
-  sideBarState: sidebarContextType;
-  setSideBarState: Dispatch<SetStateAction<sidebarContextType>>;
-};
-
-const sideBarCtxDefaultValue: SideBarContextValue = {
-  sideBarState: { open: false, data: null },
-  setSideBarState: () => {},
-};
-
-type navBarContextType = {
-  sideBarCtx: SideBarContextValue;
-  username: string;
-};
-
-const navBarCtxDefaultValue: navBarContextType = {
-  sideBarCtx: sideBarCtxDefaultValue,
-  username: "",
-};
-
-export const navBarContext = React.createContext<navBarContextType>(
-  navBarCtxDefaultValue
-);
-export const sideBarContext = React.createContext<SideBarContextValue>(
-  sideBarCtxDefaultValue
-);
 
 export default function BasePage() {
-  const dispatch = useAppDispatch();
-  const [value, setValue] = React.useState<Date | null>(new Date());
-  const [sideBarState, setSideBarState] = React.useState<sidebarContextType>({
+  const dispatch = useAppDispatch();;
+  const [sideBarState, setSideBarState] = React.useState<SideBarState>({
     open: false,
     data: null,
   });
-  const userState = useAppSelector((state) => state.AuthReducer);
-  const _access_sidebar = {
-    sideBarState: sideBarState,
-    setSideBarState: setSideBarState,
-  };
-  const eventStateValue = useAppSelector((state) => state.AppReducer.event);
-  const navBarCtx = {
-    sideBarCtx: _access_sidebar,
-    username: userState.firstname,
-  };
+  const userStore = useAppSelector((state) => state.AuthReducer);
+  const eventStore = useAppSelector((state) => state.AppReducer.event);
   const [addEventDialog, setAddEventDialog] = React.useState<{
     open: boolean;
     date: Date;
@@ -79,9 +42,12 @@ export default function BasePage() {
       style={{ background: "black" }}
     >
       <div className="h-[121px]">
-        <navBarContext.Provider value={{ ...navBarCtx }}>
-          <NavigationBar userState={userState} />
-        </navBarContext.Provider>
+        <NavigationBar
+          userState={userStore}
+          sideBarState={sideBarState}
+          setSideBarState={setSideBarState}
+          username={userStore.firstname}
+        />
         <div className="h-[56px] md:h-[72px]" />
         <SubNavigation
           callbacks={{
@@ -102,21 +68,41 @@ export default function BasePage() {
               />
             </ThemeProvider>
           </section>
-          <section className={`md:flex-[2] md:${eventStateValue.length > 0 ? "self-start" : "self-center"}`}>
+          <section
+            className={`md:flex-[2] md:${
+              eventStore.length > 0 ? "self-start" : "self-center"
+            }`}
+          >
             <div>
-              <EventList />
+              <EventList events={eventStore} />
             </div>
           </section>
         </div>
       </main>
 
-      <sideBarContext.Provider value={{ sideBarState, setSideBarState }}>
-        <ProfileSideBar />
-      </sideBarContext.Provider>
+      <ProfileSideBar
+        sideBarState={sideBarState}
+        setSideBarState={setSideBarState}
+      />
+
       <AddEventDialog
         state={addEventDialog}
         callbackFn={() => setAddEventDialog({ open: false, date: new Date() })}
       />
+
+      <button
+        style={{
+          fontSize: "11px",
+          fontWeight: "bold",
+          borderColor: "yellowgreen",
+          boxShadow: "0px 0px 10px 4px rgb(55 73 18)",
+        }}
+        // onClick={callbacks.createEvent}
+        className="fixed left-[47px] bottom-[42px] font-sans flex items-center border-2 border-grey-500 bg-[#9acd32] md:px-[12px] md:py-[7px] rounded-full text-[15px] text-[600]"
+      >
+        Today's Event
+        <PlusCircleIcon className="ml-[9px] h-5 w-5" />
+      </button>
     </div>
   );
 }

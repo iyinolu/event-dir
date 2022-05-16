@@ -44,7 +44,7 @@ export const capitalize = (input: string) => {
   return format;
 };
 
-export const renderDate = (date: Date | undefined) => {
+export const renderDate = (date: string | undefined) => {
   if (date) {
     let dateObj = new Date(date);
     let _dateObj = dateObj.toDateString().split(" ");

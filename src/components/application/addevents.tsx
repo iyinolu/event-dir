@@ -1,85 +1,28 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
-import { Dialog, Divider } from "@material-ui/core";
+import { Dialog } from "@material-ui/core";
 import { addNewEventProps } from "../../containers/app/types";
 import { makeStyles } from "@material-ui/styles";
 import { CloseButton } from "./styled";
 import { XIcon, BellIcon } from "@heroicons/react/outline";
-import { Event } from "../../redux/reducer/app/types";
 import { formatDate } from "../../utils/helpers";
 import Select, { StylesConfig } from "react-select";
-import { Height } from "@material-ui/icons";
 import { useAppSelector, useAppDispatch } from "../../App";
-import { EventCategory, initialAppState } from "../../redux/reducer/app/types";
+import {
+  EventCategory,
+  initialAppState,
+} from "../../redux/reducer/application/types";
 import { AuthState } from "../../redux/reducer/authentication/types";
 import { createNewEvent } from "../../redux/thunk";
 import { EventPayload } from "../../redux/types";
 import { updateCreateEventStatus } from "../../redux/actions/app";
 import SendIcon from "@material-ui/icons/Send";
 import DoneOutlineIcon from "@material-ui/icons/DoneOutline";
-
-type FormData = {
-  title: string;
-  content: string;
-  category: number | undefined;
-};
-
-type CategoryOptions = {
-  value: number;
-  label: string;
-};
-
-const selectStyles: StylesConfig<CategoryOptions, false> = {
-  container: (styles) => ({ ...styles }),
-  control: (provided, state) => {
-    return {
-      ...provided,
-      borderRadius: 5,
-      borderColor: "#2a2a2a",
-      backgroundColor: "#2a2a2a",
-      "&:hover": {
-        borderColor: "#2a2a2a",
-      },
-    };
-  },
-  option: (styles) => {
-    return {
-      ...styles,
-      backgroundColor: "grey",
-      fontSize: "12px",
-    };
-  },
-  singleValue: (styles) => {
-    return {
-      ...styles,
-      backgroundColor: "#0f0e0e",
-      color: "grey",
-      fontSize: "12px",
-      padding: "2px 9px",
-      borderRadius: "5px",
-    };
-  },
-  menuList: (styles) => {
-    return {
-      ...styles,
-      backgroundColor: "#0f0e0e",
-      padding: 0,
-      borderRadius: "4px",
-    };
-  },
-  placeholder: (styles) => {
-    return {
-      ...styles,
-      fontSize: "13px",
-      color: "lightgrey",
-    };
-  },
-};
+import { FormDataState, CategoryOptionsRef } from "../types";
 
 const AddEventDialog: React.FC<addNewEventProps> = ({ state, callbackFn }) => {
   const classes = useStyles();
   const dispatch = useAppDispatch();
-  const [event, setEvent] = React.useState<FormData>({
+  const [event, setEvent] = React.useState<FormDataState>({
     title: "",
     content: "",
     category: -1,
@@ -91,7 +34,7 @@ const AddEventDialog: React.FC<addNewEventProps> = ({ state, callbackFn }) => {
     (state) => state.AppReducer
   );
   const authUser = useAppSelector<AuthState>((state) => state.AuthReducer);
-  const options = React.useRef<CategoryOptions[]>();
+  const options = React.useRef<CategoryOptionsRef[]>();
 
   React.useEffect(() => {
     if (categories) {
@@ -137,14 +80,7 @@ const AddEventDialog: React.FC<addNewEventProps> = ({ state, callbackFn }) => {
         </div>
       </div>
       <div className="flex-grow text-white px-[20px] py-[27px] bg-[#0f0e0e]">
-        <span
-          className="hidden"
-          //   style={{
-          //     display: "flex",
-          //     flexDirection: "row-reverse",
-          //     width: "100%",
-          //   }}
-        >
+        <span className="hidden">
           <CloseButton onClick={() => callbackFn("")}>
             <XIcon className="h-5 w-5" />
           </CloseButton>
@@ -303,3 +239,50 @@ const useStyles = makeStyles({
     color: "white",
   },
 });
+
+const selectStyles: StylesConfig<CategoryOptionsRef, false> = {
+  container: (styles) => ({ ...styles }),
+  control: (provided, state) => {
+    return {
+      ...provided,
+      borderRadius: 5,
+      borderColor: "#2a2a2a",
+      backgroundColor: "#2a2a2a",
+      "&:hover": {
+        borderColor: "#2a2a2a",
+      },
+    };
+  },
+  option: (styles) => {
+    return {
+      ...styles,
+      backgroundColor: "grey",
+      fontSize: "12px",
+    };
+  },
+  singleValue: (styles) => {
+    return {
+      ...styles,
+      backgroundColor: "#0f0e0e",
+      color: "grey",
+      fontSize: "12px",
+      padding: "2px 9px",
+      borderRadius: "5px",
+    };
+  },
+  menuList: (styles) => {
+    return {
+      ...styles,
+      backgroundColor: "#0f0e0e",
+      padding: 0,
+      borderRadius: "4px",
+    };
+  },
+  placeholder: (styles) => {
+    return {
+      ...styles,
+      fontSize: "13px",
+      color: "lightgrey",
+    };
+  },
+};

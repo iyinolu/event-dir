@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { LoginPayLoad } from "./reducer/authentication/types";
-import { EventCategory } from "./reducer/app/types";
+import { EventCategory } from "./reducer/application/types";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
 import {

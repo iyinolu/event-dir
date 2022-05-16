@@ -1,19 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
 import { SunIcon } from "@heroicons/react/solid";
-import { AuthState } from "../../redux/reducer/authentication/types";
 import { capitalize } from "../../utils/helpers";
-import { useAppSelector, useAppDispatch } from "../../App";
-import { navBarContext } from "../../containers/app/BaseContainer";
+import { NavProps } from '../types';
 
-type NavProps = {
-  userState: AuthState;
-};
-
-export default function NavigationBar({ userState }: NavProps) {
-  const context = React.useContext(navBarContext);
-  const { sideBarCtx, username } = context;
-
+export default function NavigationBar({ userState, sideBarState, setSideBarState, username }: NavProps) {
   return (
     <header
       className="py-4 px-4 md:px-10 flex flex-row items-center justify-between w-screen fixed z-[1000]"
@@ -21,8 +12,7 @@ export default function NavigationBar({ userState }: NavProps) {
     >
       <div className="flex flex-row items-center">
         <span className="font-sans md:ml-5" style={{ color: "#cccccc" }}>
-          {" "}
-          Friday 7th October{" "}
+          
         </span>
       </div>
       <div className="hidden md:flex md:flex-row">
@@ -31,7 +21,7 @@ export default function NavigationBar({ userState }: NavProps) {
             style={{ color: "inherit" }}
             className="font-sans"
             onClick={() =>
-              sideBarCtx.setSideBarState({ open: true, data: userState })
+              setSideBarState({ open: true, data: userState })
             }
           >
             My Account

@@ -16,7 +16,5 @@ export type initialAppState = {
     eventCache: any;
     eventCategories: EventCategory[];
     creatingEventDone: boolean;
-    debugFlag?: any;
-    debugContent?: string
     fetchingEvent: boolean
 }

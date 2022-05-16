@@ -1,5 +1,5 @@
 import React from "react";
-import { PlusCircleIcon } from "@heroicons/react/solid";
+// import { PlusCircleIcon } from "@heroicons/react/solid";
 
 type Props = {
   callbacks: componentCallbacks;
@@ -12,7 +12,7 @@ type componentCallbacks = {
 const SubNavigation = ({ callbacks }: Props) => {
   return (
     <nav className="px-4 md:px-10 mt-3 flex flex-row justify-between items-center">
-      <button
+      {/* <button
         style={{
           fontSize: "11px",
           fontWeight: "bold",
@@ -25,7 +25,7 @@ const SubNavigation = ({ callbacks }: Props) => {
       >
         Today's Event
         <PlusCircleIcon className="ml-4 h-5 w-5" />
-      </button>
+      </button> */}
     </nav>
   );
 };

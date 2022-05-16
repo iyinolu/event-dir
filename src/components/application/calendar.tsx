@@ -1,13 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
 import { useDispatch } from "react-redux";
-import { DayProps } from "@material-ui/pickers/views/Calendar/Day";
 import { DatePicker, Day } from "@material-ui/pickers";
 import { makeStyles } from "@material-ui/styles";
-import { MaterialUiPickersDate } from "@material-ui/pickers/typings/date";
-import { Component } from "react";
-import UpdateCreateEventStatus from "../../redux/reducer/app/appSlice";
-import { initialAppState } from "../../redux/reducer/app/types";
 import { updateCreateEventStatus } from "../../redux/actions/app";
 import { fetchEvents } from "../../redux/thunk";
 import { FetchEventPayload } from "../../redux/types";

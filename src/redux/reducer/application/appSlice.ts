@@ -13,8 +13,6 @@ const initialState: initialAppState = {
   eventCache: {},
   eventCategories: [],
   creatingEventDone: false,
-  debugFlag: null,
-  debugContent: "",
   fetchingEvent: false,
 };
 

@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
-import Login from '../../components/auth/login';
+import Login from '../../components/authentication/login';
 
 export function AuthBasePage() {
     return <Login />
