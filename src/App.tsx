@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
 import "./App.css";
-import { AuthBasePage } from "./containers/auth/AuthContainer";
-import BasePage from "./containers/app/BaseContainer";
+import { AuthBasePage } from "./screens/auth/AuthContainer";
+import BasePage from "./screens/app/BaseContainer";
 import { verifyLoggedInStatus } from "./utils/helpers";
 import { fetchEventsCategories } from "./redux/thunk";
 import { RootState, AppDispatch } from "./redux/store";

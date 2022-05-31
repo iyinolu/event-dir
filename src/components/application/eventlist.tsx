@@ -82,14 +82,9 @@ export default function EventList({ events }: EventListProps) {
             </span>
             <div
               onClick={() => setViewEvent({ open: true, data: event })}
-              className="flex flex-row items-center font-sans text-xs px-3 py-2 rounded-lg flex-none w-32 bg-transparent"
-              style={{
-                padding: "6px ​10px",
-                cursor: "pointer",
-                border: "1px solid rgb(154, 205, 50)",
-                color: "rgb(154, 205, 50)",
-              }}
+              className="flex flex-row items-center py-[6px] px-[10px] font-sans text-[#9acd32] text-[14px] underline text-xs rounded-lg flex-none w-32 bg-transparent cursor-pointer"
             >
+              View More
               <ArrowNarrowRightIcon className="w-5 ml-auto" />
             </div>
           </div>
