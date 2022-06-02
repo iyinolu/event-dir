@@ -1,4 +1,4 @@
-import { AuthState } from "../redux/reducer/authentication/types";
+import { AuthState, LoginPayLoad } from "../redux/reducer/authentication/types";
 import { Event } from "../redux/types";
 
 // Component Props
@@ -29,4 +29,11 @@ export type ViewEventState = {
 export type CategoryOptionsRef = {
   value: number;
   label: string;
+};
+
+export type LoginProps = {
+  loginInfo: LoginPayLoad;
+  loginInfoSetter: React.Dispatch<React.SetStateAction<LoginPayLoad>>;
+  login: (e: React.FormEvent<HTMLFormElement>) => void;
+  loginInProgress: boolean;
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import { Dialog } from "@material-ui/core";
-import { addNewEventProps } from "../../screens/app/types";
+import { addNewEventProps } from "../../screens/application/types";
 import { makeStyles } from "@material-ui/styles";
 import { CloseButton } from "./styled";
 import { XIcon, BellIcon } from "@heroicons/react/outline";

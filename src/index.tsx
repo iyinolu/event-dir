@@ -11,6 +11,7 @@ import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import axios from "axios";
 import interceptor from "./utils/axios-config";
+import { BrowserRouter } from "react-router-dom";
 
 interceptor(axios);
 
@@ -19,7 +20,9 @@ ReactDOM.render(
     <React.StrictMode>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <Provider store={store}>
-          <App />
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
         </Provider>
       </MuiPickersUtilsProvider>
     </React.StrictMode>

@@ -14,7 +14,8 @@ const initialState: AuthState = {
     is_active: false ,
     username: "",
     firstname: "",
-    lastname: ""
+    lastname: "",
+    authInProgress: false
 }
 
 export const AuthSlice = createSlice({
@@ -38,10 +39,11 @@ export const AuthSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(login.pending, (state) => {
-            console.log(state)
+            state.authInProgress = true
         });
         builder.addCase(login.fulfilled, (state, { payload }) => {
             state.isLogin = true
+            state.authInProgress = false
             state.email = payload.email      
             state.access = payload.access
             state.refresh = payload.refresh 

@@ -7,9 +7,9 @@ export interface AuthState {
     is_active: boolean,
     username: string,
     firstname: string,
-    lastname: string
+    lastname: string,
+    authInProgress: boolean,
 }
-
 export interface LoginPayLoad {
     email: string,
     password: string,

@@ -19,7 +19,7 @@ type SideBarState = {
 };
 
 export default function BasePage() {
-  const dispatch = useAppDispatch();;
+  const dispatch = useAppDispatch();
   const [sideBarState, setSideBarState] = React.useState<SideBarState>({
     open: false,
     data: null,
@@ -97,7 +97,7 @@ export default function BasePage() {
           borderColor: "yellowgreen",
           boxShadow: "0px 0px 10px 4px rgb(55 73 18)",
         }}
-        // onClick={callbacks.createEvent}
+        onClick={() => setAddEventDialog({ open: true, date: new Date() })}
         className="fixed left-[47px] bottom-[42px] py-[5px] px-[10px] font-sans flex items-center border-2 border-grey-500 bg-[#9acd32] md:px-[12px] md:py-[7px] rounded-full text-[15px] text-[600]"
       >
         Today's Event

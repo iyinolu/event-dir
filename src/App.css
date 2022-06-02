@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+  transition: transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+}
+
+@keyframes slide {
+  from { transform: translate(100px, 0px); }
+  to   { transform: translateX(0px, 0px); }
 }
 
 .App-logo {
