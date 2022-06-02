@@ -41,17 +41,6 @@ function App() {
     }
   }, [isLogin, navigate]);
 
-  // const currentPage = () => {
-  //   switch (isLoggedIn) {
-  //     case false:
-  //       return <AuthBasePage />;
-  //     case true:
-  //       return <BasePage />;
-  //     default:
-  //       return <AuthBasePage />;
-  //   }
-  // };
-
   return (
     <Routes>
       <Route path="login" element={<AuthBasePage />} />
