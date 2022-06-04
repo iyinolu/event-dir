@@ -22,3 +22,4 @@
 - Choose from the dropdown, the list of available category, or create a custom category.
 - Click the create button to create an event.
 - App offers other functionalities including, editing events, editing profile information, adding notificaton for upcoming events, etc.
+- Fully Responsize across all screen sizes
