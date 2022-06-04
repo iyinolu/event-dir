@@ -3,6 +3,7 @@ import React from "react";
 import { SunIcon } from "@heroicons/react/solid";
 import { capitalize } from "../../utils/helpers";
 import { NavProps } from "../types";
+import { timeOfTheDay } from "../../utils/helpers";
 
 export default function NavigationBar({
   userState,
@@ -16,7 +17,9 @@ export default function NavigationBar({
       style={{ background: "rgb(15 15 15)" }}
     >
       <div className="flex flex-row items-center">
-        <span className="font-sans md:ml-5" style={{ color: "#cccccc" }}></span>
+        <span className="font-sans md:ml-5 text-[#9acd3191] font-[600]">
+          {`${timeOfTheDay()} `} <span className="text-[#6a6a6a]">{`${username}`}</span>
+        </span>
       </div>
       <div
         className="hidden md:flex md:flex-row md:justify-between md:w-[250px]"

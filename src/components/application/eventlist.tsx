@@ -19,13 +19,7 @@ export default function EventList({ events }: EventListProps) {
           style={{ display: "flex", justifyContent: "center", height: "100%" }}
         >
           <div
-            style={{
-              height: "100%",
-              display: "flex",
-              justifyContent: "center",
-              flexDirection: "column",
-            }}
-            className="items-center"
+            className="flex items-center h-full justify-center flex-col bg-[#494b4c] rounded-[8px]"
           >
             <img
               className="w-[56%] md:w-[40%]"
@@ -34,12 +28,7 @@ export default function EventList({ events }: EventListProps) {
               alt="No Event"
             />
             <p
-              style={{
-                color: "grey",
-                textAlign: "center",
-                padding: "0px 60px",
-              }}
-              className="md:w-[450px]"
+              className="md:w-[450px] text-[#e6e6e6] text-center py-0 px-[60px]"
             >
               No Events for the selected day. Double-click on a day to add an
               event.
@@ -96,7 +85,7 @@ export default function EventList({ events }: EventListProps) {
 
   return (
     <div>
-      <div className="flex flex-col rounded-xl bg-transparent h-[500px] px-8 pt-0 pb-7 overflow-auto min-h-full w-full mt-[73px] md:mt-0 md:w-auto">
+      <div className="flex flex-col rounded-xl bg-transparent h-[500px] mb-[56px] md:mb-0 px-8 overflow-auto min-h-full w-full mt-[73px] md:mt-0 md:w-auto">
         {showEvents(events)}
       </div>
       <ShowEvent viewEvent={viewEvent} setViewEvent={setViewEvent} />

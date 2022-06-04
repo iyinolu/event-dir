@@ -635,6 +635,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-left: 1rem;
 }
 
+.mb-\[36px\] {
+  margin-bottom: 36px;
+}
+
 .mt-8 {
   margin-top: 2rem;
 }
@@ -655,12 +659,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-left: 9px;
 }
 
-.mb-\[90px\] {
-  margin-bottom: 90px;
+.mb-\[56px\] {
+  margin-bottom: 56px;
 }
 
-.mb-\[36px\] {
-  margin-bottom: 36px;
+.mt-\[10\] {
+  margin-top: 10;
+}
+
+.mt-\[10px\] {
+  margin-top: 10px;
 }
 
 .block {
@@ -717,6 +725,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .h-\[56px\] {
   height: 56px;
+}
+
+.h-full {
+  height: 100%;
 }
 
 .max-h-screen {
@@ -862,10 +874,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   align-self: center;
 }
 
-.justify-self-start {
-  justify-self: start;
-}
-
 .overflow-auto {
   overflow: auto;
 }
@@ -900,6 +908,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .rounded-full {
   border-radius: 9999px;
+}
+
+.rounded-\[8px\] {
+  border-radius: 8px;
 }
 
 .rounded-t-md {
@@ -976,6 +988,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-\[\#9acd32\] {
   --tw-bg-opacity: 1;
   background-color: rgb(154 205 50 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#494b4c\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(73 75 76 / var(--tw-bg-opacity));
 }
 
 .p-\[26px\] {
@@ -1077,6 +1094,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 5px;
 }
 
+.py-0 {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.px-\[60px\] {
+  padding-left: 60px;
+  padding-right: 60px;
+}
+
 .pt-6 {
   padding-top: 1.5rem;
 }
@@ -1125,24 +1152,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   line-height: 1.25rem;
 }
 
-.text-\[17px\] {
-  font-size: 17px;
-}
-
-.text-\[15px\] {
-  font-size: 15px;
-}
-
-.text-\[41px\] {
-  font-size: 41px;
-}
-
 .text-\[28px\] {
   font-size: 28px;
 }
 
 .text-\[12px\] {
   font-size: 12px;
+}
+
+.text-\[17px\] {
+  font-size: 17px;
+}
+
+.text-\[15px\] {
+  font-size: 15px;
 }
 
 .font-extrabold {
@@ -1167,6 +1190,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .font-medium {
   font-weight: 500;
+}
+
+.font-\[600\] {
+  font-weight: 600;
 }
 
 .capitalize {
@@ -1196,6 +1223,16 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-\[\#9acd32\] {
   --tw-text-opacity: 1;
   color: rgb(154 205 50 / var(--tw-text-opacity));
+}
+
+.text-\[\#e7f0fe\] {
+  --tw-text-opacity: 1;
+  color: rgb(231 240 254 / var(--tw-text-opacity));
+}
+
+.text-\[\#808080\] {
+  --tw-text-opacity: 1;
+  color: rgb(128 128 128 / var(--tw-text-opacity));
 }
 
 .text-\[\#cac6c6\] {
@@ -1228,14 +1265,18 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(244 244 244 / var(--tw-text-opacity));
 }
 
-.text-\[\#e7f0fe\] {
+.text-\[\#e6e6e6\] {
   --tw-text-opacity: 1;
-  color: rgb(231 240 254 / var(--tw-text-opacity));
+  color: rgb(230 230 230 / var(--tw-text-opacity));
 }
 
-.text-\[\#808080\] {
+.text-\[\#6a6a6a\] {
   --tw-text-opacity: 1;
-  color: rgb(128 128 128 / var(--tw-text-opacity));
+  color: rgb(106 106 106 / var(--tw-text-opacity));
+}
+
+.text-\[\#9acd3191\] {
+  color: #9acd3191;
 }
 
 .underline {
@@ -1349,6 +1390,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     margin-bottom: 90px;
   }
 
+  .md\:mb-0 {
+    margin-bottom: 0px;
+  }
+
   .md\:flex {
     display: flex;
   }
@@ -1401,16 +1446,8 @@ Ensure the default browser behavior of the `hidden` attribute.
     flex-direction: row;
   }
 
-  .md\:items-start {
-    align-items: flex-start;
-  }
-
   .md\:items-center {
     align-items: center;
-  }
-
-  .md\:justify-start {
-    justify-content: flex-start;
   }
 
   .md\:justify-center {
@@ -1454,16 +1491,16 @@ Ensure the default browser behavior of the `hidden` attribute.
     padding-bottom: 7px;
   }
 
-  .md\:text-\[23px\] {
-    font-size: 23px;
-  }
-
   .md\:text-\[41px\] {
     font-size: 41px;
   }
 
   .md\:text-\[16px\] {
     font-size: 16px;
+  }
+
+  .md\:text-\[23px\] {
+    font-size: 23px;
   }
 }
 

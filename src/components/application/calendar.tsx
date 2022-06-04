@@ -99,6 +99,7 @@ export default function Calendar({
           );
         }}
       />
+      <p className="text-[#808080] text-[12px] text-center mt-[10px]">Double click on a day to add an event, Try it!</p>
     </>
   );
 }
