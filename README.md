@@ -1,6 +1,11 @@
 # UI Summary
 
-![Screenshot (385)](https://user-images.githubusercontent.com/47259302/154945467-d11b9f56-66bf-491f-bd63-06caf5a6907d.png)
+### Authentication Screen
+<img width="1187" alt="Screenshot 2022-06-02 at 8 58 46 PM" src="https://user-images.githubusercontent.com/47259302/172025436-c61ae3a7-2618-40cb-8a0d-0af2202821de.png">
+
+### Main Dashboard
+<img width="1440" alt="Screenshot 2022-06-04 at 10 02 44 PM" src="https://user-images.githubusercontent.com/47259302/172025446-09c6ea18-a52d-479c-8b25-91f89a5544e9.png">
+
 
 # Technologies Used
 
@@ -17,3 +22,4 @@
 - Choose from the dropdown, the list of available category, or create a custom category.
 - Click the create button to create an event.
 - App offers other functionalities including, editing events, editing profile information, adding notificaton for upcoming events, etc.
+- Fully Responsive across all screen sizes
