@@ -59,7 +59,7 @@ export const formatDate = (date: Date | undefined) => {
   if (date) {
     let dateObj = new Date(date);
     let _dateObj = dateObj.toLocaleDateString().split("/");
-    var renderDateFormat = `${_dateObj[2]}-${_dateObj[1]}-${_dateObj[0]}`;
+    var renderDateFormat = `${String(_dateObj[2])}-${String(_dateObj[1])}-${String(_dateObj[0])}`;
   } else {
     return " ";
   }
