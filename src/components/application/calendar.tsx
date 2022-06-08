@@ -32,6 +32,7 @@ export default function Calendar({
 
   React.useEffect(() => {
     const date: FetchEventPayload = { date: value };
+    console.log(date)
     dispatch(fetchEvents(date));
   }, [value, dispatch]);
 

@@ -68,7 +68,7 @@ export const formatDate = (date: Date | undefined) => {
 
 export const timeOfTheDay = () => {
   const periods = ["Good Morning", "Good Afternoon", "Good Evening", "Sleeping..."]
-  let time = new Date().getHours()
+  const time = new Date().getHours()
   if (time < 6) {
     return periods[3]
   } else if (time < 12) {
