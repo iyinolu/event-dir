@@ -40,7 +40,7 @@ export const fetchEvents = createAsyncThunk<
   if (eventCache.hasOwnProperty(parsedDate)) {
     data = eventCache[parsedDate];
   } else {
-    const endpoint: string = `/api/events?event_date="{parsedDate}`
+    const endpoint: string = `/api/events?event_date=${parsedDate}`
     const response = await axios.get(endpoint);
     data = response.data;
   }
