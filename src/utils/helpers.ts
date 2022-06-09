@@ -66,8 +66,8 @@ export const formatDate = (date: Date | undefined) => {
   if (date) {
     let dateObj = new Date(date);
     var renderDateFormat = `${dateObj.getFullYear()}-${addLeadingZero(
-      dateObj.getDate()
-    )}-${addLeadingZero(dateObj.getMonth() + 1)}`;
+      addLeadingZero(dateObj.getMonth() + 1)
+    )}-${dateObj.getDate()}`;
   } else {
     return " ";
   }
