@@ -55,11 +55,19 @@ export const renderDate = (date: string | undefined) => {
   return renderDateFormat;
 };
 
+export const addLeadingZero = (value: string | number): string => {
+  if (String(value).length === 1) {
+    return "0" + String(value);
+  }
+  return String(value);
+};
+
 export const formatDate = (date: Date | undefined) => {
   if (date) {
     let dateObj = new Date(date);
-    let _dateObj = dateObj.toLocaleDateString().split("/");
-    var renderDateFormat = `${String(_dateObj[2])}-${String(_dateObj[1])}-${String(_dateObj[0])}`;
+    var renderDateFormat = `${dateObj.getFullYear()}-${addLeadingZero(
+      dateObj.getDate()
+    )}-${addLeadingZero(dateObj.getMonth() + 1)}`;
   } else {
     return " ";
   }
@@ -67,15 +75,20 @@ export const formatDate = (date: Date | undefined) => {
 };
 
 export const timeOfTheDay = () => {
-  const periods = ["Good Morning", "Good Afternoon", "Good Evening", "Sleeping..."]
-  const time = new Date().getHours()
+  const periods = [
+    "Good Morning",
+    "Good Afternoon",
+    "Good Evening",
+    "Sleeping...",
+  ];
+  const time = new Date().getHours();
   if (time < 6) {
-    return periods[3]
+    return periods[3];
   } else if (time < 12) {
-    return periods[0]
+    return periods[0];
   } else if (time < 18) {
-    return periods[1]
+    return periods[1];
   } else {
-    return periods[2]
+    return periods[2];
   }
-}
+};
