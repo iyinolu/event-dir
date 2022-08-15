@@ -37,7 +37,12 @@
     "redux-persist": "^6.0.0",
     "styled-components": "^5.3.3",
     "typescript": "^4.4.3",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^1.1.2",
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-brands-svg-icons": "^6.1.1",
+    "@fortawesome/free-regular-svg-icons": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/react-fontawesome": "^0.2.0"
   },
   "scripts": {
     "start": "concurrently \"npm run start:css\" \"react-scripts start\"",
